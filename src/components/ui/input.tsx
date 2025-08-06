@@ -39,7 +39,7 @@ export function CurrencyInput({
     currencyPatterns.USD
 
   return (
-    <div className="flex flex-row w-full gap-2">
+    <div className="grid grid-cols-[1fr_80px] w-full gap-2">
       <div
         className={cn(
           'flex items-center rounded-md px-3 dark:bg-input/30 border-input h-9 w-full min-w-0 border bg-transparent py-1 text-base shadow-xs transition-[color,box-shadow] outline-none focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
