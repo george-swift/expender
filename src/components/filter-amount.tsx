@@ -93,7 +93,6 @@ export function FilterAmount({ expenses }: { expenses: Expense[] }) {
   const handleMinInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newMin = Number(e.target.value)
     if (Number.isNaN(newMin)) newMin = minAmount
-    newMin = clamp(newMin, minAmount, localMax - 1)
     setLocalMin(newMin)
     setRange(`${newMin}-${localMax}`)
   }
@@ -101,14 +100,17 @@ export function FilterAmount({ expenses }: { expenses: Expense[] }) {
   const handleMaxInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newMax = Number(e.target.value)
     if (Number.isNaN(newMax)) newMax = maxAmount
-    newMax = clamp(newMax, localMin + 1, maxAmount)
     setLocalMax(newMax)
     setRange(`${localMin}-${newMax}`)
   }
 
-  // Distribution bars
+  // Distribution of expenses by amount is a dynamically set histogram with at least 2 bins - 30 bins at most.
   const distributionData = useMemo(() => {
-    const numBins = 30
+    const uniqueAmounts = new Set(
+      expensesInSelectedCurrency.map(exp => exp.amount)
+    )
+    const numBins = Math.max(2, Math.min(30, uniqueAmounts.size))
+
     const range = maxAmount - minAmount
     const binSize = range > 0 ? range / numBins : 1
     const bins = Array.from({ length: numBins }).fill(0) as number[]
@@ -197,10 +199,9 @@ export function FilterAmount({ expenses }: { expenses: Expense[] }) {
           className="mt-4"
           max={maxAmount}
           min={minAmount}
-          minStepsBetweenThumbs={10}
           onValueChange={handleValueChange}
           onValueCommit={handleValueCommit}
-          step={10}
+          step={1}
           value={sliderValue}
         />
 
