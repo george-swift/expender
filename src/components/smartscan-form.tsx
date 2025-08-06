@@ -56,7 +56,7 @@ const PROGRESS_INTERVAL_MS = 100
 export function SmartScanForm({ close }: SmartScanFormProps) {
   const { session } = useSession()
 
-  const [file, setFile] = useState<Expense['receipt']>(null)
+  const fileRef = useRef<Expense['receipt']>(null)
   const [scanResult, setScanResult] = useState<null | Expense>(null)
   const [processState, setProcessState] = useState<ProcessState>('idle')
 
@@ -145,11 +145,11 @@ export function SmartScanForm({ close }: SmartScanFormProps) {
           }
         })
 
-        setFile({
+        fileRef.current = {
           name: uploadedFile.name,
           size: uploadedFile.size,
           url
-        })
+        }
 
         isUploadingRef.current = false
         setUploadProgress(100)
@@ -213,7 +213,11 @@ export function SmartScanForm({ close }: SmartScanFormProps) {
             return
           }
 
-          setScanResult(() => ({ ...extractedData, scanId, receipt: file }))
+          setScanResult(() => ({
+            ...extractedData,
+            scanId,
+            receipt: fileRef.current
+          }))
           setDataExtractionProgress(100)
           cleanupTimers()
           setProcessState('idle')
@@ -266,7 +270,7 @@ export function SmartScanForm({ close }: SmartScanFormProps) {
         ) : (
           <>
             <FileUploader
-              {...(file && { file })}
+              {...(fileRef.current && { file: fileRef.current })}
               isDeletable={false}
               loading={
                 isUploadingRef.current ||
