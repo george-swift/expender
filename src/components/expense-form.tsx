@@ -55,7 +55,8 @@ export function ExpenseForm({
         date: dayjs().hour(12).minute(0).toISOString(),
         description: '',
         merchant: '',
-        receipt: null
+        receipt: null,
+        scanId: null
       },
     [expense]
   )
