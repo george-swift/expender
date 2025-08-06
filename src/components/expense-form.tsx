@@ -91,7 +91,7 @@ export function ExpenseForm({
         toast.error(response.error)
       } else {
         toast.success(
-          `Expense ${data.expenseId ? 'updated' : 'created'} successfully!`
+          `Expense ${expense?.expenseId ? 'updated' : 'created'} successfully!`
         )
         close?.()
       }
@@ -320,7 +320,7 @@ export function ExpenseForm({
         </Button>
 
         <Button
-          disabled={pending || !isDirty || !isValid}
+          disabled={pending || (!inSmartScanMode && !isDirty) || !isValid}
           isLoading={pending}
           loadingText={expense?.expenseId ? 'Saving changes...' : 'Saving...'}
           type="submit"
