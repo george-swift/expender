@@ -33,6 +33,7 @@ import { Expense } from '@/lib/validations/expenses'
 import { useDialog } from '@/hooks/use-dialog'
 import { ExpenseForm } from '@/components/expense-form'
 import { getExpensesTableColumns } from '@/components/expenses-table-columns'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -120,7 +121,8 @@ function ExpensesTableCell({
             <TabsList className="w-full">
               <TabsTrigger value="details">Details</TabsTrigger>
               <TabsTrigger disabled={true} value="history">
-                History
+                <div>History</div>
+                <Badge variant="outline">Upcoming feature</Badge>
               </TabsTrigger>
             </TabsList>
 
