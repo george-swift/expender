@@ -163,7 +163,8 @@ export function ExpensesTable({ data }: { data: Expense[] }) {
         date: row.original.date,
         description: row.original.description,
         merchant: row.original.merchant,
-        receipt: row.original.receipt
+        receipt: row.original.receipt,
+        scanId: row.original.scanId ?? null
       })
 
       if (response?.error) {

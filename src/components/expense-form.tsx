@@ -83,7 +83,7 @@ export function ExpenseForm({
 
   const onSubmit = (data: Expense) => {
     startTransition(async () => {
-      const mutation = data?.expenseId ? updateExpense : createExpense
+      const mutation = expense?.expenseId ? updateExpense : createExpense
       const response = await mutation(data)
 
       if (response?.error) {

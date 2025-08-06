@@ -57,9 +57,7 @@ export function SmartScanForm({ close }: SmartScanFormProps) {
   const { session } = useSession()
 
   const [file, setFile] = useState<Expense['receipt']>(null)
-  const [scanResult, setScanResult] = useState<null | Omit<Expense, 'receipt'>>(
-    null
-  )
+  const [scanResult, setScanResult] = useState<null | Expense>(null)
   const [processState, setProcessState] = useState<ProcessState>('idle')
 
   const [dataExtractionProgress, setDataExtractionProgress] = useState(0)
@@ -215,7 +213,7 @@ export function SmartScanForm({ close }: SmartScanFormProps) {
             return
           }
 
-          setScanResult(() => extractedData)
+          setScanResult(() => ({ ...extractedData, scanId, receipt: file }))
           setDataExtractionProgress(100)
           cleanupTimers()
           setProcessState('idle')
@@ -262,7 +260,7 @@ export function SmartScanForm({ close }: SmartScanFormProps) {
               setScanResult(null)
               close?.()
             }}
-            expense={{ ...scanResult, receipt: file }}
+            expense={scanResult}
             inSmartScanMode
           />
         ) : (

@@ -32,7 +32,7 @@ export const expenseSchema = z.object({
       url: z.string().url()
     })
     .nullable(),
-  scanId: z.string().optional(),
+  scanId: z.string().nullable(),
   updatedAt: z.coerce.date().optional()
 })
 
