@@ -25,10 +25,11 @@ import {
 } from '@/components/ui/accordion'
 import { Badge } from '@/components/ui/badge'
 import { buttonVariants } from '@/components/ui/button'
+import LenisScrollProvider from '@/app/providers/lenis'
 
 export default function Home() {
   return (
-    <>
+    <LenisScrollProvider>
       <Header />
 
       <main>
@@ -209,7 +210,7 @@ export default function Home() {
           </div>
         </Container>
       </footer>
-    </>
+    </LenisScrollProvider>
   )
 }
 
