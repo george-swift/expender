@@ -1,0 +1,286 @@
+name: ♿ Accessibility Issue
+description: Report accessibility problems or WCAG compliance issues
+title: '♿ [A11Y]: '
+labels: ['accessibility', 'needs-triage']
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping make Expender more accessible! Please provide details about the accessibility issue you've encountered.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm you have completed these steps before submitting
+      options:
+        - label: I have searched for existing accessibility issues that are similar
+          required: true
+        - label: I have tested this with keyboard navigation (if applicable)
+          required: false
+        - label: I have tested this with a screen reader (if applicable)
+          required: false
+
+  - type: dropdown
+    id: accessibility_category
+    attributes:
+      label: Accessibility Category
+      description: What type of accessibility issue are you reporting?
+      options:
+        - Keyboard Navigation
+        - Screen Reader Support
+        - Color Contrast
+        - Focus Management
+        - Semantic HTML
+        - ARIA Labels/Attributes
+        - Alternative Text
+        - Form Accessibility
+        - Skip Links
+        - Other WCAG Violation
+    validations:
+      required: true
+
+  - type: dropdown
+    id: wcag_level
+    attributes:
+      label: WCAG Level
+      description: What WCAG conformance level does this affect?
+      options:
+        - Level A (Basic accessibility)
+        - Level AA (Standard accessibility)
+        - Level AAA (Enhanced accessibility)
+        - Not sure
+    validations:
+      required: false
+
+  - type: textarea
+    id: issue_description
+    attributes:
+      label: Issue Description
+      description: A clear description of the accessibility issue
+      placeholder: Describe the accessibility problem you encountered...
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected_users
+    attributes:
+      label: Affected Users
+      description: Which users or assistive technologies are affected by this issue?
+      placeholder: |
+        Examples:
+        - Users who navigate with keyboard only
+        - Users with screen readers (NVDA, JAWS, VoiceOver)
+        - Users with low vision
+        - Users with motor disabilities
+        - Users with cognitive disabilities
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Detailed steps to reproduce the accessibility issue
+      placeholder: |
+        1. Navigate to '...'
+        2. Use [keyboard/screen reader/assistive technology] to...
+        3. Notice the accessibility issue...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Accessible Behavior
+      description: What should happen for this to be accessible?
+      placeholder: Describe how this should work for users with disabilities...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happens that creates the accessibility barrier?
+      placeholder: Describe what currently happens that makes this inaccessible...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: assistive_technology
+    attributes:
+      label: Assistive Technology Used
+      description: What assistive technology did you test with?
+      multiple: true
+      options:
+        - Keyboard only
+        - NVDA (Windows)
+        - JAWS (Windows)
+        - VoiceOver (macOS/iOS)
+        - TalkBack (Android)
+        - Dragon NaturallySpeaking
+        - Switch control
+        - Voice control
+        - Other
+        - None (manual testing)
+    validations:
+      required: false
+
+  - type: dropdown
+    id: browser_tested
+    attributes:
+      label: Browser/Platform Tested
+      description: Which browser and platform did you test with?
+      multiple: true
+      options:
+        - Chrome (Windows)
+        - Chrome (macOS)
+        - Firefox (Windows)
+        - Firefox (macOS)
+        - Safari (macOS)
+        - Edge (Windows)
+        - Mobile Safari (iOS)
+        - Chrome (Android)
+        - Other
+    validations:
+      required: false
+
+  - type: textarea
+    id: screen_reader_output
+    attributes:
+      label: Screen Reader Output
+      description: If using a screen reader, what does it announce?
+      placeholder: |
+        Describe what the screen reader says:
+        - What is announced (or not announced)
+        - Any confusing or incorrect announcements
+        - Missing information that should be announced
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: keyboard_issues
+    attributes:
+      label: Keyboard Navigation Issues
+      description: If this affects keyboard navigation, check all that apply
+      options:
+        - label: Element cannot be reached with Tab key
+        - label: Tab order is confusing or illogical
+        - label: Focus indicator is missing or unclear
+        - label: Cannot activate element with Enter/Space
+        - label: Trapped in element (cannot Tab out)
+        - label: Cannot use arrow keys where expected
+        - label: Keyboard shortcuts don't work
+
+  - type: checkboxes
+    id: screen_reader_issues
+    attributes:
+      label: Screen Reader Issues
+      description: If this affects screen readers, check all that apply
+      options:
+        - label: Element is not announced
+        - label: Element role is unclear or incorrect
+        - label: Missing or incorrect labels
+        - label: State changes are not announced
+        - label: Content is announced in wrong order
+        - label: Important information is skipped
+        - label: Too much irrelevant information is announced
+
+  - type: textarea
+    id: severity_impact
+    attributes:
+      label: Severity and Impact
+      description: How severely does this affect accessibility?
+      placeholder: |
+        Describe the impact:
+        - Does this completely block users from completing a task?
+        - Does this make the task difficult but still possible?
+        - Does this create confusion but doesn't prevent task completion?
+        - How many users are likely affected?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How would you prioritize fixing this accessibility issue?
+      options:
+        - Low (Minor accessibility improvement)
+        - Medium (Affects some users' ability to complete tasks)
+        - High (Blocks important functionality for disabled users)
+        - Critical (Completely prevents access to key features)
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested_fix
+    attributes:
+      label: Suggested Fix
+      description: Do you have suggestions for how to fix this accessibility issue?
+      placeholder: |
+        Your suggestions might include:
+        - Specific ARIA attributes to add
+        - HTML semantic changes needed
+        - Focus management improvements
+        - Alternative text suggestions
+        - Links to accessibility best practices
+    validations:
+      required: false
+
+  - type: textarea
+    id: wcag_guidelines
+    attributes:
+      label: Relevant WCAG Guidelines
+      description: Which WCAG guidelines does this violate? (if known)
+      placeholder: |
+        Examples:
+        - WCAG 2.1.1 (Keyboard)
+        - WCAG 1.4.3 (Contrast)
+        - WCAG 4.1.2 (Name, Role, Value)
+        - WCAG 2.4.7 (Focus Visible)
+    validations:
+      required: false
+
+  - type: textarea
+    id: testing_tools
+    attributes:
+      label: Accessibility Testing Tools Used
+      description: What tools did you use to identify this issue?
+      placeholder: |
+        Tools might include:
+        - Browser developer tools accessibility audit
+        - axe DevTools
+        - WAVE
+        - Lighthouse accessibility audit
+        - Manual testing with assistive technology
+        - Color contrast analyzers
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information about this accessibility issue
+      placeholder: |
+        Additional context:
+        - Related accessibility issues
+        - User feedback from disabled users
+        - Legal or compliance requirements
+        - Examples of accessible implementations
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Are you willing to help fix this accessibility issue?
+      options:
+        - label: I can help implement the accessibility fix
+        - label: I can test the fix with assistive technology
+        - label: I can provide accessibility expertise or guidance
+        - label: I can help with accessibility documentation

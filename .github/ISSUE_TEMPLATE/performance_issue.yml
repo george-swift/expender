@@ -1,0 +1,329 @@
+name: ⚡ Performance Issue
+description: Report loading times, bundle size, or runtime performance problems
+title: '⚡ [PERFORMANCE]: '
+labels: ['performance', 'needs-triage']
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve Expender's performance! Please provide details about the performance issue you've encountered.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm you have completed these steps before submitting
+      options:
+        - label: I have searched for existing performance issues that are similar
+          required: true
+        - label: I have tested this in multiple browsers or devices
+          required: false
+
+  - type: dropdown
+    id: performance_category
+    attributes:
+      label: Performance Category
+      description: What type of performance issue are you reporting?
+      options:
+        - Page Load Time
+        - Bundle Size
+        - Runtime Performance
+        - Memory Usage
+        - Network Performance
+        - Animation/UI Performance
+        - Database/API Performance
+        - Image Loading
+        - JavaScript Execution
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue_description
+    attributes:
+      label: Issue Description
+      description: A clear description of the performance issue
+      placeholder: Describe the performance problem you're experiencing...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected_pages
+    attributes:
+      label: Affected Pages/Features
+      description: Which pages or features are affected by this performance issue?
+      multiple: true
+      options:
+        - Dashboard/Home Page
+        - Expense List/Table
+        - Expense Forms
+        - SmartScan Upload/Processing
+        - Charts/Analytics
+        - User Settings
+        - Authentication Pages
+        - Navigation/Routing
+        - All pages
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Detailed steps to reproduce the performance issue
+      placeholder: |
+        1. Navigate to '...'
+        2. Perform action '...'
+        3. Notice slow performance when...
+        4. Measure time/observe behavior...
+    validations:
+      required: true
+
+  - type: textarea
+    id: performance_metrics
+    attributes:
+      label: Performance Metrics
+      description: Please provide specific performance measurements if available
+      placeholder: |
+        Include any metrics you've measured:
+        - Page load time: X seconds
+        - Time to interactive: X seconds
+        - Bundle size: X MB
+        - Memory usage: X MB
+        - API response time: X ms
+        - Lighthouse scores: Performance X, Accessibility X, etc.
+        - Core Web Vitals: LCP, FID, CLS values
+    validations:
+      required: false
+
+  - type: dropdown
+    id: device_type
+    attributes:
+      label: Device Type
+      description: On what type of device did you experience this performance issue?
+      multiple: true
+      options:
+        - High-end Desktop
+        - Mid-range Desktop
+        - Low-end Desktop
+        - High-end Mobile
+        - Mid-range Mobile
+        - Low-end Mobile
+        - Tablet
+        - All devices
+    validations:
+      required: true
+
+  - type: dropdown
+    id: connection_speed
+    attributes:
+      label: Connection Speed
+      description: What internet connection speed were you using?
+      options:
+        - Fast (Fiber/Broadband)
+        - Medium (Standard Broadband)
+        - Slow (3G/Slow WiFi)
+        - Very Slow (2G/Poor Connection)
+        - Offline/Intermittent
+        - All connection speeds
+        - Unknown
+    validations:
+      required: false
+
+  - type: dropdown
+    id: browser_performance
+    attributes:
+      label: Browser/Platform
+      description: Which browser or platform shows this performance issue?
+      multiple: true
+      options:
+        - Chrome (Desktop)
+        - Firefox (Desktop)
+        - Safari (Desktop)
+        - Edge (Desktop)
+        - Chrome (Mobile)
+        - Safari (Mobile)
+        - Firefox (Mobile)
+        - All browsers
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_performance
+    attributes:
+      label: Expected Performance
+      description: What performance did you expect?
+      placeholder: |
+        Describe expected performance:
+        - Page should load in under X seconds
+        - Interactions should feel responsive (< X ms)
+        - Memory usage should stay under X MB
+        - Bundle size should be under X MB
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_performance
+    attributes:
+      label: Actual Performance
+      description: What performance are you actually experiencing?
+      placeholder: |
+        Describe actual performance:
+        - Page takes X seconds to load
+        - Interactions feel sluggish/delayed
+        - Memory usage grows to X MB
+        - Bundle size is X MB
+        - Specific actions that are slow
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: performance_symptoms
+    attributes:
+      label: Performance Symptoms
+      description: What specific performance symptoms are you experiencing?
+      options:
+        - label: Slow initial page load
+        - label: Slow navigation between pages
+        - label: Laggy scrolling or animations
+        - label: Delayed response to user interactions
+        - label: High memory usage
+        - label: Large JavaScript bundle size
+        - label: Slow API response times
+        - label: Images load slowly or not at all
+        - label: UI freezes or becomes unresponsive
+        - label: Excessive network requests
+
+  - type: textarea
+    id: browser_dev_tools
+    attributes:
+      label: Browser Developer Tools Analysis
+      description: Any insights from browser developer tools?
+      placeholder: |
+        Share findings from browser dev tools:
+        - Network tab: slow requests, large resources
+        - Performance tab: JavaScript execution time, layout shifts
+        - Memory tab: memory leaks, high usage
+        - Lighthouse audit results
+        - Console warnings or errors
+    validations:
+      required: false
+
+  - type: dropdown
+    id: severity_performance
+    attributes:
+      label: Severity
+      description: How severe is this performance issue?
+      options:
+        - Low (Slightly slower than expected)
+        - Medium (Noticeably slow but usable)
+        - High (Significantly impacts user experience)
+        - Critical (Makes application nearly unusable)
+    validations:
+      required: true
+
+  - type: textarea
+    id: user_impact_performance
+    attributes:
+      label: User Impact
+      description: How does this performance issue affect users?
+      placeholder: |
+        Describe the impact:
+        - Do users abandon tasks due to slow performance?
+        - Does it affect user satisfaction or productivity?
+        - Are certain user groups more affected (mobile users, slow connections)?
+        - Does it impact conversion or engagement rates?
+    validations:
+      required: false
+
+  - type: textarea
+    id: performance_comparison
+    attributes:
+      label: Performance Comparison
+      description: How does this compare to similar applications or previous versions?
+      placeholder: |
+        Comparison context:
+        - Performance in previous versions of Expender
+        - Performance compared to similar expense management apps
+        - Industry benchmarks or standards
+        - User expectations based on other web apps
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggested_optimizations
+    attributes:
+      label: Suggested Optimizations
+      description: Do you have suggestions for improving performance?
+      placeholder: |
+        Your optimization suggestions:
+        - Code splitting or lazy loading
+        - Image optimization
+        - Bundle size reduction
+        - Caching strategies
+        - API optimization
+        - Database query optimization
+        - Specific libraries or techniques
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: optimization_areas
+    attributes:
+      label: Potential Optimization Areas
+      description: Which areas might benefit from optimization?
+      options:
+        - label: JavaScript bundle size reduction
+        - label: CSS optimization
+        - label: Image compression and optimization
+        - label: Lazy loading implementation
+        - label: Caching strategy improvements
+        - label: API response optimization
+        - label: Database query optimization
+        - label: Component rendering optimization
+        - label: Animation/transition performance
+        - label: Memory management
+
+  - type: textarea
+    id: testing_environment
+    attributes:
+      label: Testing Environment
+      description: Details about your testing environment
+      placeholder: |
+        Environment details:
+        - Operating system and version
+        - Browser version
+        - Device specifications (RAM, processor)
+        - Network conditions
+        - Time of day (if server performance varies)
+        - Any browser extensions or settings
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information about this performance issue
+      placeholder: |
+        Additional context:
+        - Performance trends you've noticed
+        - Related performance issues
+        - User feedback about performance
+        - Business impact of the performance issue
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Are you willing to help improve performance?
+      options:
+        - label: I can help implement performance optimizations
+        - label: I can provide performance testing and measurements
+        - label: I can help with performance monitoring setup
+        - label: I can research and suggest optimization techniques

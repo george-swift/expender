@@ -1,0 +1,292 @@
+name: 📱 Mobile/Responsive Issue
+description: Report problems with mobile responsiveness or cross-device compatibility
+title: "📱 [MOBILE]: "
+labels: ["mobile", "responsive", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the mobile experience of Expender! Please provide details about the responsive design issue you've encountered.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm you have completed these steps before submitting
+      options:
+        - label: I have searched for existing mobile/responsive issues that are similar
+          required: true
+        - label: I have tested this on multiple screen sizes or devices
+          required: false
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue Type
+      description: What type of mobile/responsive issue are you reporting?
+      options:
+        - Layout Breaking
+        - Content Overflow
+        - Touch Target Issues
+        - Navigation Problems
+        - Text/Image Scaling
+        - Performance on Mobile
+        - Orientation Issues
+        - Cross-Device Inconsistency
+        - Mobile-Specific Functionality
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue_description
+    attributes:
+      label: Issue Description
+      description: A clear description of the mobile/responsive issue
+      placeholder: Describe the mobile or responsive design problem...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected_devices
+    attributes:
+      label: Affected Devices
+      description: On which types of devices does this issue occur?
+      multiple: true
+      options:
+        - Mobile Phones
+        - Tablets
+        - Small Laptops (< 1366px)
+        - Large Desktop Screens (> 1440px)
+        - All devices
+    validations:
+      required: true
+
+  - type: input
+    id: specific_devices
+    attributes:
+      label: Specific Devices/Screen Sizes
+      description: Which specific devices or screen resolutions are affected?
+      placeholder: e.g., iPhone 14 Pro, iPad Air, 1920x1080, Galaxy S23, etc.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: screen_orientation
+    attributes:
+      label: Screen Orientation
+      description: Does this issue occur in specific orientations?
+      multiple: true
+      options:
+        - Portrait
+        - Landscape
+        - Both orientations
+    validations:
+      required: false
+
+  - type: dropdown
+    id: browsers_mobile
+    attributes:
+      label: Affected Mobile Browsers
+      description: Which mobile browsers show this issue?
+      multiple: true
+      options:
+        - Mobile Safari (iOS)
+        - Chrome (Android)
+        - Chrome (iOS)
+        - Firefox (Android)
+        - Firefox (iOS)
+        - Samsung Internet
+        - Edge (Mobile)
+        - Other
+        - All mobile browsers
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Detailed steps to reproduce the issue on mobile/responsive
+      placeholder: |
+        1. Open the app on [device/screen size]
+        2. Navigate to '...'
+        3. [Specific mobile interaction - tap, swipe, rotate, etc.]
+        4. Notice the issue...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Mobile Behavior
+      description: What should happen on mobile devices or different screen sizes?
+      placeholder: Describe how this should work on mobile or smaller screens...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happens that creates the mobile/responsive issue?
+      placeholder: Describe what currently happens on mobile that's problematic...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: responsive_issues
+    attributes:
+      label: Responsive Design Issues
+      description: Check all responsive design problems that apply
+      options:
+        - label: Content is cut off or hidden
+        - label: Horizontal scrolling required
+        - label: Text is too small to read
+        - label: Touch targets are too small (< 44px)
+        - label: Images don't scale properly
+        - label: Layout breaks at certain breakpoints
+        - label: Content overlaps other elements
+        - label: Navigation is difficult to use
+
+  - type: checkboxes
+    id: mobile_usability
+    attributes:
+      label: Mobile Usability Issues
+      description: Check all mobile usability problems that apply
+      options:
+        - label: Difficult to tap/touch elements
+        - label: Gestures don't work as expected
+        - label: Mobile keyboard covers important content
+        - label: Form inputs are hard to use on mobile
+        - label: Scrolling is jerky or unresponsive
+        - label: Loading times are too slow on mobile
+        - label: App doesn't work offline when expected
+
+  - type: dropdown
+    id: breakpoint_affected
+    attributes:
+      label: CSS Breakpoint Affected
+      description: At which breakpoint does the issue occur?
+      options:
+        - < 640px (mobile)
+        - 640px - 768px (large mobile)
+        - 768px - 1024px (tablet)
+        - 1024px - 1280px (desktop)
+        - > 1280px (large desktop)
+        - Between breakpoints
+        - Multiple breakpoints
+        - All breakpoints
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots_mobile
+    attributes:
+      label: Screenshots/Screen Recordings
+      description: Please provide visual evidence of the mobile issue
+      placeholder: |
+        Please include:
+        - Screenshots showing the issue on mobile
+        - Comparison with desktop version (if relevant)
+        - Screen recordings of problematic interactions
+        - Different orientations (if relevant)
+    validations:
+      required: false
+
+  - type: dropdown
+    id: severity_mobile
+    attributes:
+      label: Severity
+      description: How severe is this mobile/responsive issue?
+      options:
+        - Low (Minor layout issue, doesn't affect functionality)
+        - Medium (Affects user experience but workarounds exist)
+        - High (Makes features difficult to use on mobile)
+        - Critical (Makes app unusable on mobile devices)
+    validations:
+      required: true
+
+  - type: textarea
+    id: performance_impact
+    attributes:
+      label: Performance Impact
+      description: Does this issue affect mobile performance?
+      placeholder: |
+        Performance considerations:
+        - Slow loading on mobile networks
+        - Excessive memory usage
+        - Battery drain
+        - Scroll performance issues
+        - Touch responsiveness problems
+    validations:
+      required: false
+
+  - type: textarea
+    id: accessibility_mobile
+    attributes:
+      label: Mobile Accessibility Impact
+      description: Does this issue affect accessibility on mobile devices?
+      placeholder: |
+        Mobile accessibility concerns:
+        - Issues with mobile screen readers
+        - Problems with voice control
+        - Touch accessibility problems
+        - High contrast mode issues
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggested_solution
+    attributes:
+      label: Suggested Solution
+      description: Do you have suggestions for fixing this mobile/responsive issue?
+      placeholder: |
+        Your suggestions might include:
+        - CSS media query adjustments
+        - Layout changes for mobile
+        - Touch target size improvements
+        - Mobile-specific design patterns
+        - Performance optimizations
+    validations:
+      required: false
+
+  - type: textarea
+    id: user_impact_mobile
+    attributes:
+      label: User Impact
+      description: How does this issue affect mobile users?
+      placeholder: |
+        Describe the impact:
+        - Does it prevent mobile users from completing tasks?
+        - Does it make the mobile experience frustrating?
+        - How does it affect mobile user adoption?
+        - Are there specific user workflows that are broken?
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information about this mobile/responsive issue
+      placeholder: |
+        Additional context:
+        - Mobile usage statistics for this feature
+        - User feedback about mobile experience
+        - Comparison with mobile design best practices
+        - Related mobile issues
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Are you willing to help fix this mobile/responsive issue?
+      options:
+        - label: I can help implement the responsive design fix
+        - label: I can test the fix on multiple mobile devices
+        - label: I can provide mobile design expertise
+        - label: I can help with mobile performance optimization

@@ -1,0 +1,250 @@
+name: 🎨 Design/UI Issue
+description: Report design inconsistencies, UI problems, or user experience issues
+title: '🎨 [DESIGN]: '
+labels: ['design', 'ui/ux', 'needs-triage']
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the design and user experience of Expender! Please provide details about the design issue you've encountered.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm you have completed these steps before submitting
+      options:
+        - label: I have searched for existing design issues that are similar
+          required: true
+        - label: I have tested this across different screen sizes (if applicable)
+          required: false
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue Type
+      description: What type of design issue are you reporting?
+      options:
+        - Visual Inconsistency
+        - Layout Problem
+        - Typography Issue
+        - Color/Theme Issue
+        - Icon/Image Problem
+        - Animation/Transition Issue
+        - User Experience Problem
+        - Design System Violation
+        - Spacing/Alignment Issue
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue_description
+    attributes:
+      label: Issue Description
+      description: A clear description of the design issue
+      placeholder: Describe what's wrong with the current design...
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: Current Design/Behavior
+      description: What does the current design look like or how does it currently behave?
+      placeholder: Describe the current state...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_design
+    attributes:
+      label: Expected Design/Behavior
+      description: What should the design look like or how should it behave?
+      placeholder: Describe what you expected to see...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected_components
+    attributes:
+      label: Affected Components
+      description: Which UI components are affected by this issue?
+      multiple: true
+      options:
+        - Buttons
+        - Forms/Inputs
+        - Navigation
+        - Tables/Lists
+        - Cards
+        - Modals/Dialogs
+        - Charts/Graphs
+        - Headers/Footers
+        - Sidebar
+        - Dashboard Layout
+        - Mobile Menu
+        - Other
+    validations:
+      required: false
+
+  - type: dropdown
+    id: screen_sizes
+    attributes:
+      label: Affected Screen Sizes
+      description: On which screen sizes does this issue occur?
+      multiple: true
+      options:
+        - Mobile (< 768px)
+        - Tablet (768px - 1024px)
+        - Desktop (> 1024px)
+        - Large Desktop (> 1440px)
+        - All screen sizes
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: Affected Browsers
+      description: In which browsers have you observed this issue?
+      multiple: true
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Opera
+        - All browsers
+        - Other
+    validations:
+      required: false
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: How can we see this design issue?
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Notice the design issue...
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots/Visual Evidence
+      description: Please provide screenshots showing the issue
+      placeholder: |
+        Drag and drop images here or paste links to show:
+        - Current incorrect design
+        - Expected design (if you have an example)
+        - Different views/states of the issue
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: design_principles
+    attributes:
+      label: Design Principles Affected
+      description: Which design principles are violated by this issue?
+      options:
+        - label: Consistency (elements don't match design system)
+        - label: Hierarchy (visual hierarchy is unclear)
+        - label: Readability (text is hard to read)
+        - label: Accessibility (color contrast, focus states, etc.)
+        - label: Usability (confusing or hard to use)
+        - label: Responsive design (doesn't work well on all devices)
+
+  - type: dropdown
+    id: theme_affected
+    attributes:
+      label: Theme Affected
+      description: Does this issue occur in specific themes?
+      multiple: true
+      options:
+        - Light theme
+        - Dark theme
+        - Both themes
+        - System theme
+    validations:
+      required: false
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is this design issue?
+      options:
+        - Low (Minor cosmetic issue)
+        - Medium (Affects visual consistency)
+        - High (Affects usability)
+        - Critical (Makes feature unusable)
+    validations:
+      required: true
+
+  - type: textarea
+    id: user_impact
+    attributes:
+      label: User Impact
+      description: How does this design issue affect users?
+      placeholder: |
+        Describe the impact:
+        - Does it confuse users?
+        - Does it make tasks harder to complete?
+        - Does it affect the professional appearance?
+        - Does it cause accessibility issues?
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggested_solution
+    attributes:
+      label: Suggested Solution
+      description: Do you have any suggestions for how to fix this design issue?
+      placeholder: |
+        Your suggestions:
+        - Specific design changes
+        - References to existing design patterns
+        - Links to design inspiration
+    validations:
+      required: false
+
+  - type: textarea
+    id: design_system_notes
+    attributes:
+      label: Design System Considerations
+      description: Any notes about how this relates to the design system
+      placeholder: |
+        Consider:
+        - Which design tokens should be used?
+        - Are new design patterns needed?
+        - How does this fit with existing components?
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other context about this design issue
+      placeholder: |
+        Additional information:
+        - Related design issues
+        - User feedback about this area
+        - Design goals or requirements
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Are you willing to help fix this design issue?
+      options:
+        - label: I can provide design mockups or suggestions
+        - label: I can help implement the design fix
+        - label: I can help with design research or testing
+        - label: I can provide additional examples or references

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentation
+    url: https://github.com/george-swift/expender/blob/main/README.md
+    about: Check out the comprehensive README for setup and usage instructions
+  - name: 📧 Email Support
+    url: mailto:support@expender.app
+    about: Get direct help from the maintainers
+  - name: 🔒 Security Issues
+    url: mailto:security@expender.app
+    about: Report critical security vulnerabilities privately

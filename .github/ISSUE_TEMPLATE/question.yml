@@ -1,0 +1,295 @@
+name: ❓ Question/Documentation
+description: Ask questions about usage, request documentation improvements, or seek clarification
+title: '❓ [QUESTION]: '
+labels: ['question', 'documentation']
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your question! Please provide details about what you'd like to know or what documentation could be improved.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm you have completed these steps before asking
+      options:
+        - label: I have searched existing issues and discussions for this question
+          required: true
+        - label: I have checked the README.md and documentation
+          required: true
+        - label: I have looked at the code examples and component documentation
+          required: false
+
+  - type: dropdown
+    id: question_category
+    attributes:
+      label: Question Category
+      description: What type of question or documentation request is this?
+      options:
+        - Usage Question
+        - Setup/Installation Help
+        - Development/Contributing Question
+        - Component Usage
+        - API Integration
+        - Configuration Help
+        - Best Practices
+        - Documentation Improvement
+        - Feature Explanation
+        - Troubleshooting Help
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question_description
+    attributes:
+      label: Question/Request Description
+      description: Please describe your question or documentation request in detail
+      placeholder: |
+        Describe your question or what documentation you need:
+        - What specific information are you looking for?
+        - What are you trying to accomplish?
+        - What have you already tried?
+        - What documentation is missing or unclear?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: experience_level
+    attributes:
+      label: Experience Level
+      description: What's your experience level with the relevant technologies?
+      options:
+        - Beginner (new to React/Next.js/TypeScript)
+        - Intermediate (some experience with these technologies)
+        - Advanced (experienced with these technologies)
+        - Expert (very experienced, contributing to projects)
+    validations:
+      required: false
+
+  - type: dropdown
+    id: affected_areas
+    attributes:
+      label: Related Areas
+      description: Which areas of the application does your question relate to?
+      multiple: true
+      options:
+        - Setup/Installation
+        - Authentication (Clerk)
+        - Expense Management
+        - SmartScan/Receipt Processing
+        - Dashboard/Analytics
+        - UI Components
+        - Forms and Validation
+        - Mobile/Responsive Design
+        - Performance
+        - Accessibility
+        - Testing
+        - Deployment
+        - Configuration
+        - Development Workflow
+        - Contributing
+        - Other
+    validations:
+      required: false
+
+  - type: textarea
+    id: current_understanding
+    attributes:
+      label: Current Understanding
+      description: What do you currently understand about this topic?
+      placeholder: |
+        Share your current knowledge:
+        - What you think should happen
+        - What you've already learned from documentation
+        - What specific part you're confused about
+        - What you've tried so far
+    validations:
+      required: false
+
+  - type: textarea
+    id: what_tried
+    attributes:
+      label: What Have You Tried?
+      description: What steps have you already taken to find the answer?
+      placeholder: |
+        List what you've already tried:
+        - Documentation sections you've read
+        - Code examples you've looked at
+        - Similar questions you've found
+        - Experiments you've done
+        - Error messages you've encountered
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected_outcome
+    attributes:
+      label: Expected Outcome
+      description: What would you like to achieve or understand?
+      placeholder: |
+        Describe what you want to accomplish:
+        - Specific functionality you want to implement
+        - Understanding you want to gain
+        - Problem you want to solve
+        - Documentation you'd like to see
+    validations:
+      required: false
+
+  - type: textarea
+    id: code_example
+    attributes:
+      label: Code Example (if applicable)
+      description: Share any relevant code you're working with
+      placeholder: |
+        If relevant, share code snippets:
+        - What you've tried to implement
+        - Error-producing code
+        - Configuration you're using
+        ```typescript
+        // Your code here
+        ```
+      render: typescript
+    validations:
+      required: false
+
+  - type: textarea
+    id: error_messages
+    attributes:
+      label: Error Messages (if applicable)
+      description: Any error messages you're encountering
+      placeholder: |
+        If you're getting errors, paste them here:
+        - Console errors
+        - Build errors
+        - TypeScript errors
+        - Runtime errors
+      render: shell
+    validations:
+      required: false
+
+  - type: dropdown
+    id: documentation_type
+    attributes:
+      label: Documentation Type Needed
+      description: If this is a documentation request, what type would be most helpful?
+      multiple: true
+      options:
+        - Step-by-step tutorial
+        - Code examples
+        - API reference
+        - Best practices guide
+        - Troubleshooting guide
+        - Video walkthrough
+        - Interactive examples
+        - Architecture explanation
+        - Configuration reference
+        - Migration guide
+        - FAQ addition
+        - Other
+    validations:
+      required: false
+
+  - type: textarea
+    id: documentation_gaps
+    attributes:
+      label: Documentation Gaps
+      description: What specific documentation is missing or could be improved?
+      placeholder: |
+        Identify documentation improvements:
+        - Sections that are unclear or confusing
+        - Missing examples or use cases
+        - Outdated information
+        - Topics not covered at all
+        - Information that's hard to find
+    validations:
+      required: false
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency
+      description: How urgent is getting an answer to this question?
+      options:
+        - Low (I'm just curious or planning ahead)
+        - Medium (I'm working on this but not blocked)
+        - High (I'm blocked and need help to proceed)
+        - Critical (Production issue or deadline pressure)
+    validations:
+      required: false
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use Case/Context
+      description: What's the broader context or use case for your question?
+      placeholder: |
+        Provide context:
+        - What project are you working on?
+        - What business requirement are you trying to meet?
+        - How does this fit into your overall goals?
+        - Who else might benefit from this information?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: question_areas
+    attributes:
+      label: Question Areas
+      description: Check all areas your question touches on
+      options:
+        - label: Frontend development patterns
+        - label: Component architecture
+        - label: State management
+        - label: API integration
+        - label: Authentication flow
+        - label: Form handling
+        - label: Error handling
+        - label: Performance optimization
+        - label: Accessibility implementation
+        - label: Testing strategies
+        - label: Deployment processes
+        - label: Configuration management
+
+  - type: textarea
+    id: ideal_answer
+    attributes:
+      label: Ideal Answer Format
+      description: How would you prefer to receive the answer?
+      placeholder: |
+        Your preference for the answer:
+        - Detailed explanation with examples
+        - Quick code snippet
+        - Link to relevant documentation
+        - Step-by-step instructions
+        - Conceptual overview
+        - Video explanation
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information that might help provide a better answer
+      placeholder: |
+        Additional context:
+        - Your development environment
+        - Specific constraints or requirements
+        - Related questions or issues
+        - Timeline considerations
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution_interest
+    attributes:
+      label: Contribution Interest
+      description: Are you interested in helping improve documentation based on this question?
+      options:
+        - label: I'd like to help write documentation once I understand this
+        - label: I can provide feedback on documentation improvements
+        - label: I can help with examples or use cases
+        - label: I can test and validate documentation changes

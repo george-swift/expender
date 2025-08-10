@@ -1,0 +1,237 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement for the Expender frontend
+title: '✨ [FEATURE]: '
+labels: ['enhancement', 'needs-triage']
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! Please provide detailed information to help us understand and evaluate your request.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm you have completed these steps before submitting
+      options:
+        - label: I have searched for existing feature requests that are similar
+          required: true
+        - label: I have checked the project roadmap and documentation
+          required: true
+
+  - type: dropdown
+    id: feature_category
+    attributes:
+      label: Feature Category
+      description: What type of feature are you requesting?
+      options:
+        - UI/UX Enhancement
+        - New Component
+        - Performance Improvement
+        - Accessibility Feature
+        - Mobile/Responsive Feature
+        - Data Visualization
+        - User Experience
+        - Developer Experience
+        - Integration Feature
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: feature_summary
+    attributes:
+      label: Feature Summary
+      description: A brief, clear summary of the feature you'd like to see
+      placeholder: Summarize your feature request in 1-2 sentences...
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem_statement
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve? What user need does it address?
+      placeholder: |
+        Describe the problem or user need this feature would address:
+        - What specific challenge are users facing?
+        - How does this impact the user experience?
+        - What workflow would this improve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your proposed solution in detail
+      placeholder: |
+        Describe how you envision this feature working:
+        - What would the user interface look like?
+        - How would users interact with this feature?
+        - What would the user workflow be?
+    validations:
+      required: true
+
+  - type: textarea
+    id: user_stories
+    attributes:
+      label: User Stories
+      description: Describe specific user scenarios and use cases
+      placeholder: |
+        Example format:
+        - As a [user type], I want to [action] so that [benefit]
+        - As a business owner, I want to filter expenses by project so that I can track project costs
+        - As a mobile user, I want to quickly add expenses so that I can capture them on the go
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Define what "done" looks like for this feature
+      placeholder: |
+        List the specific requirements that must be met:
+        - [ ] Requirement 1
+        - [ ] Requirement 2
+        - [ ] Requirement 3
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user_impact
+    attributes:
+      label: User Impact
+      description: How many users would benefit from this feature?
+      options:
+        - All users would benefit
+        - Most users would benefit
+        - Some users would benefit
+        - Specific user group would benefit
+        - Power users would benefit
+    validations:
+      required: true
+
+  - type: dropdown
+    id: implementation_complexity
+    attributes:
+      label: Implementation Complexity (Your Assessment)
+      description: How complex do you think this feature would be to implement?
+      options:
+        - Simple (few hours of work)
+        - Moderate (few days of work)
+        - Complex (weeks of work)
+        - Very Complex (months of work)
+        - Unknown/Not sure
+    validations:
+      required: false
+
+  - type: textarea
+    id: design_considerations
+    attributes:
+      label: Design Considerations
+      description: Any specific design, accessibility, or user experience considerations
+      placeholder: |
+        Consider:
+        - How should this look on mobile vs desktop?
+        - What accessibility requirements are important?
+        - How does this fit with the existing design system?
+        - What loading or error states are needed?
+    validations:
+      required: false
+
+  - type: textarea
+    id: technical_considerations
+    attributes:
+      label: Technical Considerations
+      description: Any technical requirements or constraints to consider
+      placeholder: |
+        Consider:
+        - Performance requirements
+        - Browser compatibility needs
+        - Integration with existing APIs
+        - State management implications
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Have you considered any alternative approaches or workarounds?
+      placeholder: |
+        Describe any alternative solutions you've considered:
+        - What other approaches could solve this problem?
+        - Are there existing workarounds users are using?
+        - How do other similar applications handle this?
+    validations:
+      required: false
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups/Wireframes
+      description: Visual representations of your proposed feature (optional)
+      placeholder: |
+        If you have any mockups, wireframes, or visual examples:
+        - Drag and drop images here
+        - Paste links to design tools (Figma, Sketch, etc.)
+        - Describe the visual layout in text
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature to you?
+      options:
+        - Nice to have (would be a nice addition)
+        - Important (would significantly improve user experience)
+        - Critical (essential for user workflows)
+        - Blocking (prevents users from completing tasks)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: related_areas
+    attributes:
+      label: Related Areas
+      description: Which areas of the application would this feature affect?
+      options:
+        - label: Dashboard/Analytics
+        - label: Expense Management
+        - label: SmartScan/Receipt Processing
+        - label: User Profile/Settings
+        - label: Authentication/Security
+        - label: Data Export/Import
+        - label: Mobile Experience
+        - label: Performance
+        - label: Accessibility
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information that would help evaluate this feature request
+      placeholder: |
+        Additional context:
+        - Links to related issues or discussions
+        - Examples from other applications
+        - User feedback or research data
+        - Business requirements or goals
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Are you willing to help implement this feature?
+      options:
+        - label: I would like to work on implementing this feature
+        - label: I can help with design or user experience research
+        - label: I can provide testing and feedback during development
+        - label: I can help with documentation
