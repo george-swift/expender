@@ -4,10 +4,13 @@ import { withSentryConfig } from '@sentry/nextjs'
 import { env } from '@/env'
 
 const nextConfig: NextConfig = {
+  devIndicators: { position: 'bottom-right' },
   experimental: {
+    optimizePackageImports: ['aws-amplify', '@sentry/nextjs'],
     serverActions: {
       bodySizeLimit: '5mb'
-    }
+    },
+    viewTransition: true
   },
   images: {
     remotePatterns: [
