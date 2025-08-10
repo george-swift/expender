@@ -110,7 +110,7 @@ export function UserProfileForm({ user }: { user: UserResource | null }) {
         <p className="mt-1 text-sm/6 text-muted-foreground">
           All of the fields in this section are optional and can be deleted at
           any time. Please see the{' '}
-          <Link className="text-foreground underline" href="/privacy-policy">
+          <Link className="text-foreground underline" href="#">
             privacy policy
           </Link>{' '}
           to learn more about how this information is used.
