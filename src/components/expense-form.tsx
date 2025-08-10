@@ -6,7 +6,7 @@ import {
   CalendarIcon,
   DownloadIcon,
   EraserIcon,
-  FileIcon,
+  FileSpreadsheetIcon,
   Trash2Icon,
   UploadIcon
 } from 'lucide-react'
@@ -47,17 +47,17 @@ export function ExpenseForm({
   inSmartScanMode = false
 }: ExpenseFormProps) {
   const defaultValues = useMemo(
-    () =>
-      expense ?? {
-        amount: Number.NaN,
-        category: '',
-        currency: 'USD',
-        date: dayjs().hour(12).minute(0).toISOString(),
-        description: '',
-        merchant: '',
-        receipt: null,
-        scanId: null
-      },
+    () => ({
+      amount: expense?.amount ?? Number.NaN,
+      category: expense?.category ?? '',
+      currency: expense?.currency ?? 'USD',
+      date: expense?.date ?? dayjs().hour(12).minute(0).toISOString(),
+      description: expense?.description ?? '',
+      expenseId: expense?.expenseId ?? undefined,
+      merchant: expense?.merchant ?? '',
+      receipt: expense?.receipt ?? null,
+      scanId: expense?.scanId ?? null
+    }),
     [expense]
   )
 
@@ -151,7 +151,7 @@ export function ExpenseForm({
             </div>
             <div className="flex items-center space-x-3 truncate">
               <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-800">
-                <FileIcon aria-hidden={true} className="size-5 " />
+                <FileSpreadsheetIcon aria-hidden={true} className="size-5 " />
               </span>
               <div className="truncate pr-20">
                 <p className="truncate text-xs font-medium ">
