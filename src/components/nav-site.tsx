@@ -13,6 +13,7 @@ import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
+  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
@@ -20,22 +21,21 @@ import {
   SidebarMenuSubItem
 } from '@/components/ui/sidebar'
 
+interface NavItem {
+  disabled?: boolean
+  emoji?: React.ReactNode
+  icon?: LucideIcon
+  items?: NavItem[]
+  title: string
+  url: string
+}
+
 export function NavSite({
   className,
   items,
   label
 }: {
-  items: {
-    disabled?: boolean
-    icon?: LucideIcon
-    items?: {
-      disabled?: boolean
-      title: string
-      url: string
-    }[]
-    title: string
-    url: string
-  }[]
+  items: NavItem[]
   label?: string
 } & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
   const pathname = usePathname()
@@ -65,6 +65,7 @@ export function NavSite({
                     target={isPublicRoute(item.url) ? '_blank' : '_self'}
                   >
                     {item.icon && <item.icon />}
+                    {item.emoji && <span>{item.emoji}</span>}
                     <span>{item.title}</span>
                   </Link>
                 </SidebarMenuButton>
@@ -80,12 +81,20 @@ export function NavSite({
               key={item.title}
             >
               <SidebarMenuItem>
-                <CollapsibleTrigger asChild>
-                  <SidebarMenuButton tooltip={item.title}>
+                <SidebarMenuButton asChild>
+                  <Link href={item.url}>
                     {item.icon && <item.icon />}
+                    {item.emoji && <span>{item.emoji}</span>}
                     <span>{item.title}</span>
-                    <ChevronRightIcon className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                  </SidebarMenuButton>
+                  </Link>
+                </SidebarMenuButton>
+                <CollapsibleTrigger asChild>
+                  <SidebarMenuAction
+                    className="bg-sidebar-accent text-sidebar-accent-foreground left-2 data-[state=open]:rotate-90"
+                    showOnHover
+                  >
+                    <ChevronRightIcon />
+                  </SidebarMenuAction>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <SidebarMenuSub>
@@ -99,6 +108,8 @@ export function NavSite({
                               isPublicRoute(item.url) ? '_blank' : '_self'
                             }
                           >
+                            {subItem.icon && <subItem.icon />}
+                            {subItem.emoji && <span>{subItem.emoji}</span>}
                             <span>{subItem.title}</span>
                           </Link>
                         </SidebarMenuSubButton>

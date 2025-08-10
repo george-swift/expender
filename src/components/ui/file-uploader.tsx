@@ -1,6 +1,12 @@
 import { useCallback, useMemo } from 'react'
 import Link from 'next/link'
-import { DownloadIcon, FileIcon, LoaderIcon, Trash2Icon } from 'lucide-react'
+import {
+  DownloadIcon,
+  FileScanIcon,
+  FileSpreadsheetIcon,
+  LoaderIcon,
+  Trash2Icon
+} from 'lucide-react'
 import Dropzone, { ErrorCode, FileError, FileRejection } from 'react-dropzone'
 import { toast } from 'sonner'
 
@@ -100,10 +106,7 @@ export function FileUploader({
                 <LoaderIcon className="animate-spin size-8 text-muted-foreground" />
               ) : (
                 <div>
-                  <FileIcon
-                    aria-hidden={true}
-                    className="mx-auto size-9 text-muted-foreground"
-                  />
+                  <FileScanIcon aria-hidden={true} className="mx-auto size-9" />
                   <div className="mt-2">
                     <label className="rounded-md text-sm" htmlFor="file-upload">
                       <span aria-hidden="true" className="absolute inset-0" />
@@ -162,7 +165,10 @@ export function FileUploader({
                 </div>
                 <div className="flex items-center space-x-3 truncate">
                   <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-800">
-                    <FileIcon aria-hidden={true} className="size-5 " />
+                    <FileSpreadsheetIcon
+                      aria-hidden={true}
+                      className="size-5 "
+                    />
                   </span>
                   <div className="truncate pr-20">
                     <p className="truncate text-xs font-medium ">

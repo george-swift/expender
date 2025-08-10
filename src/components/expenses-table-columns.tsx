@@ -225,8 +225,8 @@ export const getExpensesTableColumns = ({
               onDeleteClick?.(row)
             }}
           >
-            <TrashIcon className="text-destructive-foreground" />
-            <span className="text-destructive-foreground">Delete</span>
+            <TrashIcon className="text-destructive" />
+            <span className="text-destructive">Delete</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
