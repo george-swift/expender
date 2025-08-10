@@ -1,0 +1,20 @@
+{
+  "name": "Expender - Smart Expense Management",
+  "short_name": "Expender",
+  "description": "A modern expense tracker with AI-powered receipt scanning and intelligent categorization",
+  "icons": [
+    {
+      "src": "/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "orientation": "portrait-primary",
+  "categories": ["finance", "productivity", "business"]
+}
