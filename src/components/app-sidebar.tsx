@@ -163,7 +163,7 @@ export function AppSidebar({
         <NavSite items={navigation.resources} label="Resources" />
       </SidebarContent>
       <SidebarFooter>
-        <Card className="gap-2 py-4 shadow-none">
+        <Card className="gap-2 py-4 shadow-none group-data-[state=collapsed]:hidden">
           <CardHeader className="px-4">
             <CardTitle className="text-sm">Smart Scan Usage</CardTitle>
             <CardDescription>
