@@ -1,12 +1,16 @@
 import Link from 'next/link'
 import {
-  ChartGanttIcon,
+  BanknoteIcon,
+  CircleCheckIcon,
+  FileScanIcon,
   FileSpreadsheetIcon,
-  FileStackIcon,
-  PlaneTakeoffIcon,
+  FolderKanbanIcon,
+  FolderTreeIcon,
+  HandCoinsIcon,
   ReceiptTextIcon,
   ScanTextIcon,
-  SparklesIcon
+  SparklesIcon,
+  TrendingUpDownIcon
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -40,13 +44,12 @@ export default function Home() {
           wrapperClasses="relative"
         >
           <h1 className="text-center text-pretty text-4xl/[0.9] font-bold tracking-tight sm:text-5xl">
-            Expense tracking, but smarter.
+            Track expenses, but smarter.
           </h1>
           <p className="mt-6 max-w-xl text-lg/7 text-center">
-            Managing your expenses is as easy as taking a photo of your
-            receipts. Expender uses AI to extract key details securely and
-            deliver clear, actionable insights in seconds. Open-source, and
-            built for everyone.
+            Doing your expenses is as easy as taking a photo of your receipts.
+            Expender uses AI to extract key details securely and deliver clear,
+            actionable insights in seconds. Open-source, and built for everyone.
           </p>
           <div className="mt-10 space-x-4">
             <Link className={buttonVariants()} href="/sign-up">
@@ -89,7 +92,9 @@ export default function Home() {
                     </div>
                     <div className="flex items-center gap-2">
                       <p>{useCase.name}</p>
-                      {useCase.badge && <Badge>{useCase.badge}</Badge>}
+                      {useCase.badge && (
+                        <Badge variant="outline">{useCase.badge}</Badge>
+                      )}
                     </div>
                   </dt>
                   <dd className="mt-1 flex flex-auto flex-col text-base/7">
@@ -114,7 +119,7 @@ export default function Home() {
               id="how-it-works"
               className="mt-2 text-4xl font-semibold tracking-tight text-pretty sm:text-5xl sm:text-balance"
             >
-              Lorem ipsum dolor.
+              See how easy tracking expenses can be
             </h2>
           </Container>
           <ScreenshotWithBottomGradient
@@ -125,6 +130,22 @@ export default function Home() {
             srcDark="/screenshots/dashboard-dark.png"
             width={2432}
           />
+          <div className="mx-auto mt-16 max-w-7xl px-6 sm:mt-20 md:mt-24 lg:px-8">
+            <dl className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 text-base/7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
+              {workflowSteps.map(step => (
+                <div key={step.name} className="relative pl-9">
+                  <dt className="inline font-semibold">
+                    <step.icon
+                      aria-hidden="true"
+                      className="absolute top-1 left-1 size-5"
+                    />
+                    {step.name}
+                  </dt>{' '}
+                  <dd className="inline">{step.description}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
 
         {/* FAQs */}
@@ -228,66 +249,97 @@ const faqs = [
   {
     question: 'What is Smart Scan and how does it work?',
     answer: (
-      <p>
-        Smart Scan lets you upload a receipt from your camera, photo library, or
-        files. The receipt is securely uploaded to a private S3 bucket in the
-        cloud. Expender (using Textract and OpenAI) extracts key data,
-        auto-categorizes the expense, and presents it in a form for you to
-        review and save.
-      </p>
+      <div>
+        <p>
+          Smart Scan turns any receipt into a structured expense entry in under
+          10 seconds. Simply upload a photo or PDF from your device, and our AI
+          suite extracts all the key details automatically.
+        </p>
+        <p className="mt-2">
+          Behind the scenes, we use advanced OCR technology and AI to read
+          merchant names, amounts, dates, and even suggest the right expense
+          category. You&apos;ll see a pre-filled form to review and save—no
+          manual typing required.
+        </p>
+      </div>
     )
   },
   {
     question: 'Is my data and uploaded receipts secure?',
     answer: (
-      <p>
-        Yes. All receipts are stored securely in the cloud. Only you can access
-        your data unless you request technical support, and authentication is
-        handled by Clerk. Expender only shares anonymized data with the AI model
-        during data extraction and categorization.
-      </p>
+      <div>
+        <p>
+          Absolutely. Your data security is our top priority. All receipts are
+          stored in encrypted cloud storage that only you can access.
+        </p>
+        <p className="mt-2">
+          We use enterprise-grade security measures including encrypted data
+          transmission, secure authentication via Clerk, and zero-trust
+          architecture in AWS. Your receipts are processed by AI for data
+          extraction, but no personal information is stored by the AI providers.
+        </p>
+      </div>
     )
   },
   {
     question: 'How much does it cost?',
     answer: (
-      <p>
-        Expender is free to use. But every new user on the free tier is limited
-        to 30 Smart Scans per month. If you need more, you can upgrade to Pro
-        for unlimited scans and future Copilot access.
-      </p>
+      <div>
+        <p>
+          Expender is free to start—no credit card required. You get 30 Smart
+          Scans per month, unlimited manual entries, full dashboard access, and
+          CSV exports.
+        </p>
+        <p className="mt-2">
+          Need more? Pro is just $9/month for unlimited everything, plus early
+          access to new features like AI Copilot. Perfect for businesses or
+          heavy users.
+        </p>
+      </div>
     )
   },
   {
     question: 'What does the Pro tier include?',
     answer: (
-      <p>
-        Pro is $5/month and gives you unlimited Smart Scans and access to
-        Copilot (when available). More advanced features and integrations will
-        be added over time.
-      </p>
+      <div>
+        <p>
+          Pro ($9/month) removes all limits and unlocks advanced features:
+          unlimited Smart Scans, priority support, and early access to new
+          features like Copilot.
+        </p>
+        <p className="mt-2">
+          Perfect for power users, small businesses, or anyone processing more
+          than 30 receipts with Smart Scan monthly. More integrations and
+          advanced analytics are coming soon.
+        </p>
+      </div>
     )
   },
   {
     question: 'What is Copilot and when will it be available?',
     answer: (
       <p>
-        Copilot is an upcoming feature that will let you chat with your expense
-        data, ask questions like “How much did I spend on travel last month?”
-        and get predictive budgeting advice. It will be available to Pro users
-        soon.
+        Copilot is an upcoming feature that lets you engage with your expense
+        data through an AI assistant. You could ask questions like “How much did
+        I spend on travel last month?” and get predictive budgeting advice. It
+        will be available to Pro users soon.
       </p>
     )
   },
-
   {
     question: 'Can I export my expenses?',
     answer: (
-      <p>
-        Yes. You can export your expenses as a CSV file. The exported data
-        matches the columns you see in your expenses table, so you control
-        what’s included.
-      </p>
+      <div>
+        <p>
+          Yes, exporting is simple and flexible. Generate CSV files with exactly
+          the data you need—customize which columns to include based on your
+          expenses table view.
+        </p>
+        <p className="mt-2">
+          Perfect for tax preparation, accounting software imports, or creating
+          custom reports for clients and reimbursements. Your data, your way.
+        </p>
+      </div>
     )
   },
   {
@@ -328,42 +380,81 @@ const footerLinks = [
   { href: 'https://github.com/george-swift/expender', title: 'GitHub' }
 ]
 
+const workflowSteps = [
+  {
+    name: '1. Upload Your Receipt.',
+    description:
+      'Take a photo or select a file from your device. Supports PDF, PNG, and JPG formats for maximum flexibility.',
+    icon: FileScanIcon
+  },
+  {
+    name: '2. AI Processes Your Data.',
+    description:
+      'Our AI suite reads the receipt, extracts merchant name, amount, date, and automatically suggests the right category.',
+    icon: SparklesIcon
+  },
+  {
+    name: '3. Review & Save.',
+    description:
+      'Check the pre-filled form, make any adjustments, then save. The whole Smart Scan process takes under 10 seconds.',
+    icon: CircleCheckIcon
+  },
+  {
+    name: '4. Track Your Progress.',
+    description:
+      'Watch your dashboard update instantly with new insights, charts, and spending trends across all your expenses.',
+    icon: TrendingUpDownIcon
+  },
+  {
+    name: '5. Export When Ready.',
+    description:
+      'Generate CSV reports with your preferred data columns for accounting, tax prep, or personal budgeting.',
+    icon: FileSpreadsheetIcon
+  },
+  {
+    name: '6. Stay Organized.',
+    description:
+      'Filter by date, category, or amount to find exactly what you need. Multi-currency support keeps everything isolated.',
+    icon: FolderTreeIcon
+  }
+]
+
 const useCases = [
   {
     description:
-      'Take a photo of your receipt after a purchase. Details like the merchant, date, and amount are extracted and categorized with AI, so you never lose track of business or personal expenses.',
+      'Control personal finances by understanding where your money goes. Identify spending patterns, set budgets, and make smarter financial decisions.',
+    icon: HandCoinsIcon,
+    name: 'Personal Budgeting'
+  },
+  {
+    description:
+      'Streamline expense management across teams, track spending by category, and generate reports for accounting and reimbursements.',
+    icon: FolderKanbanIcon,
+    name: 'Small Business Teams'
+  },
+  {
+    description:
+      'Perfect for those who need to track business expenses for client billing and tax deductions. Never lose a receipt again.',
     icon: ScanTextIcon,
-    name: 'Track expenses on the go'
+    name: 'Freelancers and Consultants'
   },
   {
     description:
-      'Reporting expenses could not be easier with Expender. You can create up to 25 different expenses in one go, each with details that matter to you. Handy for logging reimbursements.',
-    icon: FileStackIcon,
-    name: 'Streamline business expenses'
-  },
-  {
-    description:
-      'Export all your expenses as a comprehensive spreadsheet with one click, complete with data that is relevant to you, or download uploaded receipts. Make tax filing and audits stress-free.',
+      'Organize your receipts year-round and export clean, categorized data when tax season arrives. Save hours and reduce stress during filing.',
     icon: FileSpreadsheetIcon,
-    name: 'Prepare for tax season'
+    name: 'Tax Season Prep'
   },
   {
     description:
-      'Expender supports 18 different currencies in Europe, North & South America, Africa, and Asia, allowing you to stick to your budget and spot overspending even while away from home.',
-    icon: PlaneTakeoffIcon,
-    name: 'Stay within budget on holiday'
-  },
-  {
-    description:
-      'Your dashboard is designed to provide clear insights into your spending trends and patterns. See where your money goes, as far back as the last year, and make informed financial decisions.',
-    icon: ChartGanttIcon,
-    name: 'Financial insights at a glance'
+      'Track spending across multiple currencies while traveling for work or pleasure. Perfect for digital nomads and international business travelers.',
+    icon: BanknoteIcon,
+    name: 'Travel & International'
   },
   {
     badge: 'Upcoming feature',
     description:
-      'Ask your AI Copilot questions like “How much did I spend on subscriptions last month?” or “How often do I spend on dining out?”. Your Copilot provides predictive budgeting and personalized insights.',
+      'Get personalized insights and predictive budget recommendations. Perfect for anyone looking to optimize their spending habits with AI.',
     icon: SparklesIcon,
-    name: 'Engage with your AI Copilot'
+    name: 'Financial AI Copilot'
   }
 ]
