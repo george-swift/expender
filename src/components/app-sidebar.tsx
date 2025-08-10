@@ -1,22 +1,29 @@
 'use client'
 
-import * as React from 'react'
 import Link from 'next/link'
 import { useUser } from '@clerk/nextjs'
 import {
-  BookOpenIcon,
   CogIcon,
   FileSpreadsheetIcon,
-  HandshakeIcon,
   LayoutDashboardIcon,
   ReceiptTextIcon,
-  RocketIcon,
-  RssIcon,
   SparklesIcon
 } from 'lucide-react'
 
+import { Quota } from '@/types/quotas'
+
+import { FREE_PLAN_SMART_SCAN_LIMIT } from '@/lib/utils'
 import { NavSite } from '@/components/nav-site'
 import { NavUser } from '@/components/nav-user'
+import { Button } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card'
+import { Progress } from '@/components/ui/progress'
 import {
   Sidebar,
   SidebarContent,
@@ -25,7 +32,7 @@ import {
   SidebarMenuButton
 } from '@/components/ui/sidebar'
 
-export const navigation = {
+const navigation = {
   main: [
     {
       icon: LayoutDashboardIcon,
@@ -40,8 +47,18 @@ export const navigation = {
     {
       icon: SparklesIcon,
       items: [
-        { disabled: true, title: 'Copilot', url: '/ai/copilot' },
-        { disabled: true, title: 'Smart Scan', url: '/ai/smart-scan' }
+        {
+          disabled: true,
+          emoji: '🧾',
+          title: 'Smart Scan',
+          url: '/ai/smart-scan'
+        },
+        {
+          disabled: true,
+          emoji: '🤖',
+          title: 'Copilot',
+          url: '/ai/copilot'
+        }
       ],
       title: 'AI Suite',
       url: '/ai'
@@ -55,47 +72,68 @@ export const navigation = {
   resources: [
     {
       disabled: true,
-      icon: RocketIcon,
-      title: 'Release notes',
-      url: '/release-notes'
-    },
-    {
-      disabled: true,
-      icon: RssIcon,
+      emoji: '📝',
       title: 'Blog',
       url: '/blog'
     },
     {
-      icon: BookOpenIcon,
+      emoji: '💡',
       items: [
-        { disabled: true, title: 'Introduction', url: '/resources/api' },
         {
           disabled: true,
-          title: 'Authentication',
-          url: '/resources/api/authentication'
+          emoji: '📋',
+          title: 'Getting Started',
+          url: '/help/getting-started'
         },
-        { disabled: true, title: 'Users', url: '/resources/api/users' },
         {
           disabled: true,
-          title: 'Expenses',
-          url: '/resources/api/expenses'
+          emoji: '🧾',
+          title: 'Smart Scan Guide',
+          url: '/help/smart-scan'
         },
-        { disabled: true, title: 'Errors', url: '/resources/api/errors' },
-        { disabled: true, title: 'Events', url: '/resources/api/events' }
+        {
+          disabled: true,
+          emoji: '📊',
+          title: 'Exporting Data',
+          url: '/help/exports'
+        },
+        {
+          disabled: true,
+          emoji: '🛠️',
+          title: 'Troubleshooting',
+          url: '/help/troubleshooting'
+        },
+        {
+          disabled: true,
+          emoji: '⌨️',
+          title: 'Keyboard Shortcuts',
+          url: '/help/shortcuts'
+        }
       ],
-      title: 'Documentation',
-      url: '/resources'
+      title: 'Help Center',
+      url: '/help'
     },
     {
-      icon: HandshakeIcon,
-      title: 'Terms and policies',
+      disabled: true,
+      emoji: '🚀',
+      title: 'Release Notes',
+      url: '/release-notes'
+    },
+    {
+      emoji: '🖇️',
+      title: 'Terms & Policies',
       url: '/policies'
     }
   ]
 }
 
-export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  quota,
+  ...props
+}: { quota: Quota } & React.ComponentProps<typeof Sidebar>) {
   const { user } = useUser()
+
+  const quotaLimit = quota?.limit ?? FREE_PLAN_SMART_SCAN_LIMIT
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -109,8 +147,13 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
             <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
               <ReceiptTextIcon className="size-4" />
             </div>
-            <div className="text-base leading-tight font-semibold">
-              Expender
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <span className="truncate font-semibold">Expender</span>
+              {!!quota?.plan && (
+                <span className="truncate text-xs capitalize">
+                  {quota.plan}
+                </span>
+              )}
             </div>
           </Link>
         </SidebarMenuButton>
@@ -120,6 +163,24 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
         <NavSite items={navigation.resources} label="Resources" />
       </SidebarContent>
       <SidebarFooter>
+        <Card className="gap-2 py-4 shadow-none">
+          <CardHeader className="px-4">
+            <CardTitle className="text-sm">Smart Scan Usage</CardTitle>
+            <CardDescription>
+              {quota?.used ?? 0} of {quotaLimit} scans used this month
+            </CardDescription>
+            <Progress value={((quota?.used ?? 0) / quotaLimit) * 100} />
+          </CardHeader>
+          <CardContent className="px-4">
+            <Button
+              className="bg-sidebar-primary text-sidebar-primary-foreground w-full shadow-none"
+              size="sm"
+            >
+              Upgrade to Pro
+              <SparklesIcon />
+            </Button>
+          </CardContent>
+        </Card>
         <NavUser user={user} />
       </SidebarFooter>
     </Sidebar>

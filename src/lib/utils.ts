@@ -169,3 +169,5 @@ export const getUserNameAndInitials = (
 
 export const clamp = (value: number, minValue: number, maxValue: number) =>
   Math.max(minValue, Math.min(value, maxValue))
+
+export const FREE_PLAN_SMART_SCAN_LIMIT = 30

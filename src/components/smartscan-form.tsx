@@ -10,10 +10,8 @@ import { toast } from 'sonner'
 
 import { env } from '@/env'
 
-import { cn } from '@/lib/utils'
 import { Expense } from '@/lib/validations/expenses'
 import { ExpenseForm } from '@/components/expense-form'
-import { Badge } from '@/components/ui/badge'
 import {
   DialogDescription,
   DialogFooter,
@@ -24,6 +22,7 @@ import { FileUploader } from '@/components/ui/file-uploader'
 import { Progress } from '@/components/ui/progress'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { createPresignedPostURLForUploads } from '@/app/actions/expenses'
+import { refreshQuotaData } from '@/app/actions/quotas'
 
 Amplify.configure({
   API: {
@@ -41,14 +40,8 @@ interface SmartScanFormProps {
   close?: () => void
 }
 
-// Possible states throughout the Smart Scan process
 type ProcessState = 'error' | 'idle' | 'scanning' | 'uploading'
 
-/*
- * - Smart Scan times out if no result is received within 20 seconds.
- * - The progress of data extraction is simulated over approximately 10 seconds, and updated at 100ms intervals.
- * - Precise tracking of AI data extraction may be implemented in the future but for now this provides some feedback for the user.
- */
 const TIMEOUT_MS = 20_000
 const PROGRESS_DURATION_MS = 10_000
 const PROGRESS_INTERVAL_MS = 100
@@ -226,6 +219,7 @@ export function SmartScanForm({ close }: SmartScanFormProps) {
               ? `Data extraction confidence: ${confidence}%`
               : undefined
           })
+          refreshQuotaData()
         }
       })
   }, [session, cleanupTimers])
@@ -245,16 +239,11 @@ export function SmartScanForm({ close }: SmartScanFormProps) {
   return (
     <>
       <DialogHeader>
-        <DialogTitle>
-          Smart Scan{' '}
-          <Badge className="ml-1" variant="outline">
-            Beta
-          </Badge>
-        </DialogTitle>
+        <DialogTitle>Smart Scan</DialogTitle>
         <DialogDescription>
           {scanResult
-            ? 'Review and adjust the extracted data below before saving it as an expense.'
-            : 'Upload a receipt (PDF, PNG, or JPG) to instantly extract details like date, amount, currency, etc. with the AI suite.'}
+            ? 'Review and adjust the extracted data below before saving a record of this expense.'
+            : 'Upload a receipt and our AI suite will instantly extract key details and automatically categorize the expense in a few seconds.'}
         </DialogDescription>
       </DialogHeader>
       <ScrollArea className="h-full mt-2 flex flex-col gap-4 max-h-[calc(100vh-12rem)]">
@@ -330,13 +319,9 @@ export function SmartScanForm({ close }: SmartScanFormProps) {
       </ScrollArea>
       <DialogFooter>
         <small className="text-[10px] leading-3 text-muted-foreground">
-          <span className={cn({ hidden: scanResult })}>
-            The extracted data will pre-fill a form, which you can review, edit,
-            and save as an expense.
-          </span>{' '}
-          Your data is securely processed and encrypted, with unsaved scans
-          automatically deleted after 1 hour. All saved expenses are stored
-          until you delete them or deactivate your account.
+          Smart Scan saves you time by eliminating manual data entry. Uploads
+          are encrypted and securely processed and unsaved scan results are
+          automatically deleted after 1 hour to protect your privacy.
         </small>
       </DialogFooter>
     </>
