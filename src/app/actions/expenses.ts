@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 
 import { ExportFormat, PresignedS3PostURLResponse } from '@/types/expenses'
 
-import { apiClient, handleApiError } from '@/lib/api'
+import { apiClient, handleAPIResponseError } from '@/lib/api'
 import { smartScanFileTypes } from '@/lib/utils'
 import { Expense } from '@/lib/validations/expenses'
 
@@ -20,7 +20,7 @@ export async function createExpense(expense: Expense) {
   })
 
   if (!response.ok) {
-    return handleApiError(response, 'Failed to create expense')
+    return handleAPIResponseError(response, 'Failed to create expense')
   }
 
   revalidateExpenses()
@@ -33,7 +33,7 @@ export async function createExpenses(expenses: Expense[]) {
   })
 
   if (!response.ok) {
-    return handleApiError(response, 'Failed to create expenses')
+    return handleAPIResponseError(response, 'Failed to create expenses')
   }
 
   revalidateExpenses()
@@ -46,7 +46,7 @@ export async function deleteExpense(expenseId: string) {
   })
 
   if (!response.ok) {
-    return handleApiError(response, 'Failed to delete expense')
+    return handleAPIResponseError(response, 'Failed to delete expense')
   }
 
   revalidateExpenses()
@@ -59,7 +59,7 @@ export async function deleteExpenses(expenseIds: string[]) {
   })
 
   if (!response.ok) {
-    return handleApiError(response, 'Failed to delete expenses')
+    return handleAPIResponseError(response, 'Failed to delete expenses')
   }
 
   revalidateExpenses()
@@ -72,7 +72,7 @@ export async function updateExpense(expense: Expense) {
   })
 
   if (!response.ok) {
-    return handleApiError(response, 'Failed to update expense')
+    return handleAPIResponseError(response, 'Failed to update expense')
   }
 
   revalidateExpenses()
@@ -88,7 +88,7 @@ export async function exportExpenses(payload: {
   })
 
   if (!response.ok) {
-    return handleApiError(response, 'Failed to export expenses.')
+    return handleAPIResponseError(response, 'Failed to export expenses.')
   }
 
   return { data: await response.blob(), error: null }
@@ -111,7 +111,10 @@ export async function createPresignedPostURLForUploads(file: File) {
   })
 
   if (!response.ok) {
-    return handleApiError(response, 'Failed to get upload URL for Smart Scan')
+    return handleAPIResponseError(
+      response,
+      'Failed to get upload URL for Smart Scan'
+    )
   }
 
   const data: PresignedS3PostURLResponse = await response.json()

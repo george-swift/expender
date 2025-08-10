@@ -3,7 +3,7 @@ import 'server-only'
 import { auth } from '@clerk/nextjs/server'
 
 import { env } from '@/env'
-import { ApiError } from '@/types/api'
+import { APIResponseError } from '@/types/api'
 
 export const apiClient = async ({
   path,
@@ -24,8 +24,11 @@ export const apiClient = async ({
   })
 }
 
-export async function handleApiError(response: Response, fallback: string) {
-  const error = (await response.json()) as ApiError
+export async function handleAPIResponseError(
+  response: Response,
+  fallback: string
+) {
+  const error = (await response.json()) as APIResponseError
 
   return {
     data: null,

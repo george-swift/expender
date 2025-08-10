@@ -1,4 +1,4 @@
-import { apiClient, handleApiError } from '@/lib/api'
+import { apiClient, handleAPIResponseError } from '@/lib/api'
 
 export async function getExpenses() {
   const response = await apiClient({
@@ -7,7 +7,7 @@ export async function getExpenses() {
   })
 
   if (!response.ok) {
-    return handleApiError(response, 'Failed to fetch expenses')
+    return handleAPIResponseError(response, 'Failed to fetch expenses')
   }
 
   const data = await response.json()

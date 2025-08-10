@@ -1,4 +1,4 @@
-export interface ApiError {
+export interface APIResponseError {
   Code: string
   Message: string
 }
