@@ -111,7 +111,7 @@ const navigation = {
         }
       ],
       title: 'Help Center',
-      url: '/help'
+      url: '#'
     },
     {
       disabled: true,
@@ -122,7 +122,7 @@ const navigation = {
     {
       emoji: '🖇️',
       title: 'Terms & Policies',
-      url: '/policies'
+      url: '#'
     }
   ]
 }
