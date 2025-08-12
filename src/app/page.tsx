@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import {
   BanknoteIcon,
@@ -12,6 +14,7 @@ import {
   SparklesIcon,
   TrendingUpDownIcon
 } from 'lucide-react'
+import { motion } from 'motion/react'
 
 import { cn } from '@/lib/utils'
 import { Container } from '@/components/container'
@@ -29,11 +32,10 @@ import {
 } from '@/components/ui/accordion'
 import { Badge } from '@/components/ui/badge'
 import { buttonVariants } from '@/components/ui/button'
-import LenisScrollProvider from '@/app/providers/lenis'
 
 export default function Home() {
   return (
-    <LenisScrollProvider>
+    <>
       <Header />
 
       <main>
@@ -67,47 +69,59 @@ export default function Home() {
         </Container>
 
         {/* Use cases */}
-        <Container className="pb-24 lg:pb-32">
-          <hgroup className="mx-auto max-w-2xl text-center lg:mx-auto">
-            <p className="font-mono text-xs/5 font-semibold uppercase tracking-widest">
-              Use cases
-            </p>
-            <h2
-              id="use-cases"
-              className="mt-2 text-4xl/[0.9] font-semibold tracking-tight text-pretty sm:text-5xl"
-            >
-              It&apos;s all about staying on top of your money.
-            </h2>
-          </hgroup>
-          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-              {useCases.map(useCase => (
-                <div className="flex flex-col" key={useCase.name}>
-                  <dt className="text-base/7 font-semibold">
-                    <div className="mb-6 flex size-10 items-center justify-center rounded-lg bg-primary">
-                      <useCase.icon
-                        aria-hidden="true"
-                        className="size-6 text-primary-foreground"
-                      />
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <p>{useCase.name}</p>
-                      {useCase.badge && (
-                        <Badge variant="outline">{useCase.badge}</Badge>
-                      )}
-                    </div>
-                  </dt>
-                  <dd className="mt-1 flex flex-auto flex-col text-base/7">
-                    <p className="flex-auto">{useCase.description}</p>
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </Container>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          id="use-cases"
+        >
+          <Container className="pb-24 lg:pb-32">
+            <hgroup className="mx-auto max-w-2xl text-center lg:mx-auto">
+              <p className="font-mono text-xs/5 font-semibold uppercase tracking-widest">
+                Use cases
+              </p>
+              <h2 className="mt-2 text-4xl/[0.9] font-semibold tracking-tight text-pretty sm:text-5xl">
+                It&apos;s all about staying on top of your money.
+              </h2>
+            </hgroup>
+            <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+              <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+                {useCases.map(useCase => (
+                  <div className="flex flex-col" key={useCase.name}>
+                    <dt className="text-base/7 font-semibold">
+                      <div className="mb-6 flex size-10 items-center justify-center rounded-lg bg-primary">
+                        <useCase.icon
+                          aria-hidden="true"
+                          className="size-6 text-primary-foreground"
+                        />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <p>{useCase.name}</p>
+                        {useCase.badge && (
+                          <Badge variant="outline">{useCase.badge}</Badge>
+                        )}
+                      </div>
+                    </dt>
+                    <dd className="mt-1 flex flex-auto flex-col text-base/7">
+                      <p className="flex-auto">{useCase.description}</p>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </Container>
+        </motion.div>
 
         {/* How it works */}
-        <div className="py-24 sm:py-32">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="py-24 sm:py-32"
+          id="how-it-works"
+        >
           <Container
             className="sm:text-center lg:max-w-2xl"
             wrapperClasses="max-w-6xl mx-auto"
@@ -115,10 +129,7 @@ export default function Home() {
             <p className="font-mono text-xs/5 font-semibold uppercase tracking-widest">
               How it works
             </p>
-            <h2
-              id="how-it-works"
-              className="mt-2 text-4xl font-semibold tracking-tight text-pretty sm:text-5xl sm:text-balance"
-            >
+            <h2 className="mt-2 text-4xl font-semibold tracking-tight text-pretty sm:text-5xl sm:text-balance">
               See how easy tracking expenses can be
             </h2>
           </Container>
@@ -146,18 +157,22 @@ export default function Home() {
               ))}
             </dl>
           </div>
-        </div>
+        </motion.div>
 
         {/* FAQs */}
-        <div className="px-6 py-24 sm:py-32">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="px-6 py-24 sm:py-32"
+          id="faqs"
+        >
           <hgroup className="mx-auto max-w-2xl text-center">
             <p className="font-mono text-xs/5 font-semibold uppercase tracking-widest">
               Frequently asked questions
             </p>
-            <h2
-              id="faqs"
-              className="mt-2 text-3xl font-semibold tracking-tight sm:text-5xl"
-            >
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-5xl">
               Your questions answered
             </h2>
           </hgroup>
@@ -173,7 +188,7 @@ export default function Home() {
               </AccordionItem>
             ))}
           </Accordion>
-        </div>
+        </motion.div>
       </main>
 
       <footer className="bg-black text-white">
@@ -231,7 +246,7 @@ export default function Home() {
           </div>
         </Container>
       </footer>
-    </LenisScrollProvider>
+    </>
   )
 }
 
