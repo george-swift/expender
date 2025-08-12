@@ -22,6 +22,7 @@ import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle
 } from '@/components/ui/dialog'
@@ -101,6 +102,11 @@ export function DashboardHeader() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>New Expense</DialogTitle>
+              <DialogDescription>
+                Manually enter expense details like the date, merchant, amount,
+                and category. Perfect for quick entries when you don&apos;t have
+                a receipt to scan.
+              </DialogDescription>
             </DialogHeader>
             <ExpenseForm close={newExpenseDialog.dismiss} />
           </DialogContent>
@@ -110,6 +116,11 @@ export function DashboardHeader() {
           <DialogContent className="sm:max-w-6xl">
             <DialogHeader>
               <DialogTitle>New Expenses</DialogTitle>
+              <DialogDescription>
+                Create multiple expenses, up to 25 expenses at once, for
+                efficient bulk entry. Perfect for processing receipts from a
+                business trip or monthly expense reports.
+              </DialogDescription>
             </DialogHeader>
             <ExpensesForm close={multipleExpensesDialog.dismiss} />
           </DialogContent>
