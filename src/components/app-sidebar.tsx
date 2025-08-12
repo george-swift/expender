@@ -13,6 +13,7 @@ import {
 import { Quota } from '@/types/quotas'
 
 import { FREE_PLAN_SMART_SCAN_LIMIT } from '@/lib/utils'
+import { useDialog } from '@/hooks/use-dialog'
 import { NavSite } from '@/components/nav-site'
 import { NavUser } from '@/components/nav-user'
 import { Button } from '@/components/ui/button'
@@ -23,6 +24,12 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle
+} from '@/components/ui/dialog'
 import { Progress } from '@/components/ui/progress'
 import {
   Sidebar,
@@ -61,7 +68,7 @@ const navigation = {
         }
       ],
       title: 'AI Suite',
-      url: '/ai'
+      url: '#'
     },
     {
       icon: CogIcon,
@@ -77,6 +84,7 @@ const navigation = {
       url: '/blog'
     },
     {
+      disabled: true,
       emoji: '💡',
       items: [
         {
@@ -120,6 +128,7 @@ const navigation = {
       url: '/release-notes'
     },
     {
+      disabled: true,
       emoji: '🖇️',
       title: 'Terms & Policies',
       url: '#'
@@ -134,6 +143,8 @@ export function AppSidebar({
   const { user } = useUser()
 
   const quotaLimit = quota?.limit ?? FREE_PLAN_SMART_SCAN_LIMIT
+
+  const waitlistDialog = useDialog()
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -175,6 +186,7 @@ export function AppSidebar({
             <Button
               className="bg-sidebar-primary text-sidebar-primary-foreground w-full shadow-none"
               size="sm"
+              onClick={waitlistDialog.trigger}
             >
               Upgrade to Pro
               <SparklesIcon />
@@ -183,6 +195,69 @@ export function AppSidebar({
         </Card>
         <NavUser user={user} />
       </SidebarFooter>
+
+      <Dialog {...waitlistDialog.dialogProps}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-3 text-xl font-semibold">
+              <SparklesIcon className="size-6 text-primary" />
+              <div>Pro Features Coming Soon!</div>
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            <div className="rounded-lg border bg-muted/50 p-4">
+              <h4 className="font-medium mb-2 text-muted-foreground">
+                What to expect:
+              </h4>
+              <ul className="space-y-1 text-sm text-muted-foreground">
+                <li className="flex items-center gap-2">
+                  <div className="size-1 rounded-full bg-muted-foreground" />
+                  Unlimited Smart Scans per month
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="size-1 rounded-full bg-muted-foreground" />
+                  AI Copilot to interact with for personalized insights
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="size-1 rounded-full bg-muted-foreground" />
+                  Advanced expense analytics & insights
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="size-1 rounded-full bg-muted-foreground" />
+                  Priority customer support
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="size-1 rounded-full bg-muted-foreground" />
+                  Early access to new features
+                </li>
+              </ul>
+            </div>
+
+            <div className="space-y-3">
+              <p className="text-sm">Want to be notified when Pro launches?</p>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  className="flex-1"
+                  onClick={waitlistDialog.dismiss}
+                >
+                  Maybe Later
+                </Button>
+                <Button
+                  className="flex-1"
+                  onClick={() => {
+                    // TODO: Add to waitlist/notification system
+                    waitlistDialog.dismiss()
+                  }}
+                >
+                  Notify Me
+                </Button>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </Sidebar>
   )
 }
