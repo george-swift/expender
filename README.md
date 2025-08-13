@@ -71,7 +71,7 @@ A comprehensive web application for expense tracking and management, built with 
 - **[Recharts](https://recharts.org/)**: Composable charting library
 - **[React Hook Form](https://react-hook-form.com/)**: Performant forms with validation
 - **[Zod](https://zod.dev/)**: TypeScript-first schema validation
-- **[Lenis](https://lenis.darkroom.engineering/)**: Butter-smooth navigation on scroll.
+- **[Motion](https://motion.dev/docs/react)**: Butter-smooth navigation on scroll.
 
 ### State & Data Management
 
