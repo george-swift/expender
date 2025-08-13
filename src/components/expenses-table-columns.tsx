@@ -362,7 +362,17 @@ export const getExpensesTableFormColumns = ({
           placeholder="0.00"
           step="any"
           type="number"
-          {...register(`expenses.${row.index}.amount`, { valueAsNumber: true })}
+          onChange={e =>
+            setValue(
+              `expenses.${row.index}.amount`,
+              parseFloat(e.target.value) || 0,
+              {
+                shouldDirty: true,
+                shouldValidate: true
+              }
+            )
+          }
+          value={watch(`expenses.${row.index}.amount`) || ''}
         />
         {errors?.expenses?.[row.index]?.amount && (
           <p className="text-destructive text-sm">
@@ -384,7 +394,7 @@ export const getExpensesTableFormColumns = ({
             <Label className="sr-only" htmlFor="category">
               Category
             </Label>
-            <Select defaultValue={field.value} onValueChange={field.onChange}>
+            <Select value={field.value} onValueChange={field.onChange}>
               <SelectTrigger className="w-full shadow-xs">
                 <SelectValue id="category" placeholder="Select a category" />
               </SelectTrigger>

@@ -193,6 +193,17 @@ function ExpenseCard({
               })
             }}
             {...register(`expenses.${index}.amount`, { valueAsNumber: true })}
+            onChange={e =>
+              setValue(
+                `expenses.${index}.amount`,
+                parseFloat(e.target.value) || 0,
+                {
+                  shouldDirty: true,
+                  shouldValidate: true
+                }
+              )
+            }
+            value={watch(`expenses.${index}.amount`) || ''}
             aria-invalid={!!errors?.expenses?.[index]?.amount}
           />
           {errors?.expenses?.[index]?.amount && (
@@ -209,7 +220,7 @@ function ExpenseCard({
             control={control}
             name={`expenses.${index}.category`}
             render={({ field }) => (
-              <Select defaultValue={field.value} onValueChange={field.onChange}>
+              <Select value={field.value} onValueChange={field.onChange}>
                 <SelectTrigger id={`category-${index}`} className="w-full">
                   <SelectValue placeholder="Select a category" />
                 </SelectTrigger>
@@ -326,7 +337,7 @@ export function ExpensesForm({ close }: ExpensesFormProps) {
   if (isMobile) {
     return (
       <form
-        className="h-full mt-2 pb-4 flex flex-col gap-4"
+        className="h-[calc(100%_-_3rem)] mt-2 pb-4 flex flex-col gap-4"
         onSubmit={handleSubmit(onSubmit)}
       >
         <ScrollArea className="max-h-[calc(100vh-20rem)]">

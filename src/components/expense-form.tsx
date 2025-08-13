@@ -112,7 +112,7 @@ export function ExpenseForm({
 
   return (
     <form
-      className="h-full mt-2 pb-4 flex flex-col gap-4"
+      className="h-[calc(100%_-_3rem)] mt-2 pb-4 flex flex-col gap-4"
       onSubmit={handleSubmit(onSubmit)}
     >
       {formValues?.receipt && (
@@ -120,8 +120,8 @@ export function ExpenseForm({
           <div className="text-sm leading-none font-medium select-none">
             Receipt
           </div>
-          <div className="relative rounded-lg p-4 border shadow-xs border-input">
-            <div className="absolute right-4 top-1/2 -translate-y-1/2">
+          <div className="relative rounded-lg px-2 py-4 border shadow-xs border-input flex items-center gap-3 sm:px-4">
+            <div className="order-1 shrink-0">
               {!inSmartScanMode && (
                 <Button
                   aria-label="Remove file"
@@ -149,12 +149,12 @@ export function ExpenseForm({
                 <DownloadIcon aria-hidden="true" className="size-5 shrink-0" />
               </Link>
             </div>
-            <div className="flex items-center space-x-3 truncate">
+            <div className="grow flex items-center space-x-3 truncate">
               <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-800">
                 <FileSpreadsheetIcon aria-hidden={true} className="size-5 " />
               </span>
-              <div className="truncate pr-20">
-                <p className="truncate text-xs font-medium ">
+              <div className="truncate">
+                <p className="line-clamp-1 truncate text-xs font-medium ">
                   <span>{formValues.receipt.name}</span>
                 </p>
                 <p className="mt-0.5 text-xs text-muted-foreground">
@@ -233,7 +233,10 @@ export function ExpenseForm({
             placeholder="0.00"
             step="any"
             type="number"
-            {...register('amount', { valueAsNumber: true })}
+            onChange={e =>
+              updateField('amount', parseFloat(e.target.value) || 0)
+            }
+            value={formValues.amount || ''}
           />
           {errors?.amount && (
             <p className="text-destructive text-sm">
@@ -261,7 +264,7 @@ export function ExpenseForm({
       <div className="grid gap-2">
         <Label htmlFor="category">Category</Label>
         <Select
-          defaultValue={formValues.category}
+          value={formValues.category}
           onValueChange={value => {
             updateField('category', value)
           }}
