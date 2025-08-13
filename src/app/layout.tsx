@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
+import { Analytics } from '@vercel/analytics/next'
 
 import { Toaster } from '@/components/ui/sonner'
 import { Providers } from '@/app/providers'
@@ -134,6 +135,7 @@ export default function RootLayout({
         <Providers>
           {children}
           <Toaster richColors />
+          <Analytics />
         </Providers>
       </body>
     </html>
