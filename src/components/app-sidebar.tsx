@@ -211,24 +211,24 @@ export function AppSidebar({
                 What to expect:
               </h4>
               <ul className="space-y-1 text-sm text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <div className="size-1 rounded-full bg-muted-foreground" />
+                <li className="flex items-start gap-2">
+                  <div className="size-4">🧾</div>
                   Unlimited Smart Scans per month
                 </li>
-                <li className="flex items-center gap-2">
-                  <div className="size-1 rounded-full bg-muted-foreground" />
+                <li className="flex items-start gap-2">
+                  <div className="size-4">🤖</div>
                   AI Copilot to interact with for personalized insights
                 </li>
-                <li className="flex items-center gap-2">
-                  <div className="size-1 rounded-full bg-muted-foreground" />
+                <li className="flex items-start gap-2">
+                  <div className="size-4">📊</div>
                   Advanced expense analytics & insights
                 </li>
-                <li className="flex items-center gap-2">
-                  <div className="size-1 rounded-full bg-muted-foreground" />
+                <li className="flex items-start gap-2">
+                  <div className="size-4">📞</div>
                   Priority customer support
                 </li>
-                <li className="flex items-center gap-2">
-                  <div className="size-1 rounded-full bg-muted-foreground" />
+                <li className="flex items-start gap-2">
+                  <div className="size-4">🚀</div>
                   Early access to new features
                 </li>
               </ul>
