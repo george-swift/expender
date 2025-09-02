@@ -178,7 +178,7 @@ export function AppSidebar({
           <CardHeader className="px-4">
             <CardTitle className="text-sm">Smart Scan Usage</CardTitle>
             <CardDescription>
-              {quota?.used ?? 0} of {quotaLimit} scans used this month
+              {quota?.used ?? 0}/{quotaLimit} scans in the last 30 days
             </CardDescription>
             <Progress value={((quota?.used ?? 0) / quotaLimit) * 100} />
           </CardHeader>
