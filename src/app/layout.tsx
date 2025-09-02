@@ -128,7 +128,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn('h-auto antialiased', haffer.variable, geistMono.variable)}
+      className={cn('antialiased', haffer.variable, geistMono.variable)}
       suppressHydrationWarning
     >
       <body className="h-full font-sans select-none bg-gray-50 dark:bg-zinc-950">

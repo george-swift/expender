@@ -88,7 +88,7 @@ function ExpenseCard({
 }) {
   return (
     <Card className="w-full">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 border-b pb-2">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 px-4 border-b pb-2">
         <CardTitle className="text-sm">Expense #{index + 1}</CardTitle>
         {canRemove && (
           <Button
@@ -103,7 +103,7 @@ function ExpenseCard({
           </Button>
         )}
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 px-4">
         {/* Date */}
         <div className="space-y-2">
           <Label htmlFor={`date-${index}`}>Date</Label>
