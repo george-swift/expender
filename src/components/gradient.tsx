@@ -9,7 +9,7 @@ export function Gradient({
       {...props}
       className={cn(
         className,
-        'select-none bg-gradient-to-t from-white to-gray-100 absolute inset-0 max-h-[500px] lg:max-h-[min(100vh,_900px)] dark:from-zinc-900 dark:to-zinc-800'
+        'select-none bg-gradient-to-t from-blue-100 to-blue-200 absolute inset-0 max-h-[500px] lg:max-h-[min(100vh,_900px)] dark:from-zinc-900 dark:to-zinc-800'
       )}
     >
       <div className="hidden lg:block">

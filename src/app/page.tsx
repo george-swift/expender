@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import {
   BanknoteIcon,
@@ -14,7 +12,7 @@ import {
   SparklesIcon,
   TrendingUpDownIcon
 } from 'lucide-react'
-import { motion } from 'motion/react'
+import * as motion from 'motion/react-client'
 
 import { cn } from '@/lib/utils'
 import { Container } from '@/components/container'
@@ -466,7 +464,7 @@ const useCases = [
     name: 'Travel & International'
   },
   {
-    badge: 'Upcoming feature',
+    badge: 'Coming soon',
     description:
       'Get personalized insights and predictive budget recommendations. Perfect for anyone looking to optimize their spending habits with AI.',
     icon: SparklesIcon,
