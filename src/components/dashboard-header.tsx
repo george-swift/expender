@@ -12,6 +12,7 @@ import { useDialog } from '@/hooks/use-dialog'
 import { ExpenseForm } from '@/components/expense-form'
 import { ExpensesForm } from '@/components/expenses-form'
 import { SmartScanForm } from '@/components/smartscan-form'
+import { AlertDialog, AlertDialogContent } from '@/components/ui/alert-dialog'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -85,27 +86,19 @@ export function DashboardHeader() {
           </DropdownMenu>
         )}
 
-        <Dialog {...smartScanDialog.dialogProps}>
-          <DialogContent
-            onEscapeKeyDown={e => {
-              e.preventDefault()
-            }}
-            onInteractOutside={e => {
-              e.preventDefault()
-            }}
-          >
+        <AlertDialog {...smartScanDialog.dialogProps}>
+          <AlertDialogContent>
             <SmartScanForm close={smartScanDialog.dismiss} />
-          </DialogContent>
-        </Dialog>
+          </AlertDialogContent>
+        </AlertDialog>
 
         <Dialog {...newExpenseDialog.dialogProps}>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>New Expense</DialogTitle>
-              <DialogDescription>
-                Manually enter expense details like the date, merchant, amount,
-                and category. Perfect for quick entries when you don&apos;t have
-                a receipt to scan.
+              <DialogDescription className="max-sm:text-xs">
+                Manually enter expense details below. Perfect for quick entries
+                when you don&apos;t have a receipt to scan.
               </DialogDescription>
             </DialogHeader>
             <ExpenseForm close={newExpenseDialog.dismiss} />
@@ -116,10 +109,9 @@ export function DashboardHeader() {
           <DialogContent className="sm:max-w-6xl">
             <DialogHeader>
               <DialogTitle>New Expenses</DialogTitle>
-              <DialogDescription>
-                Create multiple expenses, up to 25 expenses at once, for
-                efficient bulk entry. Perfect for processing receipts from a
-                business trip or monthly expense reports.
+              <DialogDescription className="max-sm:text-xs">
+                Create up to 25 expenses at once. Perfect for processing
+                receipts from a business trip or monthly expense reports.
               </DialogDescription>
             </DialogHeader>
             <ExpensesForm close={multipleExpensesDialog.dismiss} />
