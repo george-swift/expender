@@ -2,7 +2,7 @@
 
 A comprehensive web application for expense tracking and management, built with Next.js and seamlessly integrated with the [Expender serverless backend](https://github.com/george-swift/expender-backend). Expender combines modern UI/UX design with powerful AI-driven receipt scanning capabilities to make expense management effortless and intuitive.
 
-![Dashboard Screenshot](./public/screenshots/dashboard.png)
+![Dashboard Screenshot](./public/images/expender-dashboard.png)
 
 ## ✨ Features
 
@@ -45,7 +45,7 @@ A comprehensive web application for expense tracking and management, built with 
 - **Intelligent Categorization**: AI-powered expense categorization based on merchant data
 - **Review & Edit**: Pre-filled forms allow review and editing before saving
 
-![SmartScan Screenshot](./public/screenshots/smartscan.png)
+![SmartScan Screenshot](./public/images/expender-smartscan.png)
 
 ### ⚡ Performance & Optimization
 
