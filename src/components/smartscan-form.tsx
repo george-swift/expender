@@ -13,11 +13,11 @@ import { env } from '@/env'
 import { Expense } from '@/lib/validations/expenses'
 import { ExpenseForm } from '@/components/expense-form'
 import {
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle
-} from '@/components/ui/alert-dialog'
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle
+} from '@/components/ui/dialog'
 import { FileUploader } from '@/components/ui/file-uploader'
 import { Progress } from '@/components/ui/progress'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -238,14 +238,14 @@ export function SmartScanForm({ close }: SmartScanFormProps) {
 
   return (
     <>
-      <AlertDialogHeader>
-        <AlertDialogTitle>Smart Scan</AlertDialogTitle>
-        <AlertDialogDescription>
+      <DialogHeader>
+        <DialogTitle>Smart Scan</DialogTitle>
+        <DialogDescription>
           {scanResult
             ? 'Review and adjust the extracted data below before saving a record of this expense.'
-            : 'Upload a receipt and our AI suite will instantly extract key details and automatically categorize the expense in a few seconds.'}
-        </AlertDialogDescription>
-      </AlertDialogHeader>
+            : 'Upload a receipt and the AI suite will extract key details and automatically categorize your expense in a few seconds.'}
+        </DialogDescription>
+      </DialogHeader>
       <ScrollArea className="h-full mt-2 flex flex-col gap-4 max-h-[calc(100vh-12rem)]">
         {scanResult ? (
           <ExpenseForm
@@ -317,13 +317,13 @@ export function SmartScanForm({ close }: SmartScanFormProps) {
           </>
         )}
       </ScrollArea>
-      <AlertDialogFooter>
+      <DialogFooter>
         <small className="text-[10px] leading-3 text-muted-foreground">
           Smart Scan saves you time by eliminating manual data entry. Uploads
-          are encrypted and securely processed and unsaved scan results are
-          automatically deleted after 1 hour to protect your privacy.
+          are encrypted and securely processed, and unsaved scan results are
+          automatically deleted after 1 hour for data privacy.
         </small>
-      </AlertDialogFooter>
+      </DialogFooter>
     </>
   )
 }

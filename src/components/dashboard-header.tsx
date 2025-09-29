@@ -12,7 +12,6 @@ import { useDialog } from '@/hooks/use-dialog'
 import { ExpenseForm } from '@/components/expense-form'
 import { ExpensesForm } from '@/components/expenses-form'
 import { SmartScanForm } from '@/components/smartscan-form'
-import { AlertDialog, AlertDialogContent } from '@/components/ui/alert-dialog'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -62,7 +61,7 @@ export function DashboardHeader() {
         {(segment === 'dashboard' || segment === 'expenses') && (
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
-              <Button className="ml-auto">
+              <Button className="ml-auto rounded-lg">
                 <PlusIcon className="size-4" />
                 <span>New Expense</span>
               </Button>
@@ -86,17 +85,17 @@ export function DashboardHeader() {
           </DropdownMenu>
         )}
 
-        <AlertDialog {...smartScanDialog.dialogProps}>
-          <AlertDialogContent>
+        <Dialog {...smartScanDialog.dialogProps}>
+          <DialogContent>
             <SmartScanForm close={smartScanDialog.dismiss} />
-          </AlertDialogContent>
-        </AlertDialog>
+          </DialogContent>
+        </Dialog>
 
         <Dialog {...newExpenseDialog.dialogProps}>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>New Expense</DialogTitle>
-              <DialogDescription className="max-sm:text-xs">
+              <DialogDescription className="max-sm:hidden">
                 Manually enter expense details below. Perfect for quick entries
                 when you don&apos;t have a receipt to scan.
               </DialogDescription>
@@ -109,7 +108,7 @@ export function DashboardHeader() {
           <DialogContent className="sm:max-w-6xl">
             <DialogHeader>
               <DialogTitle>New Expenses</DialogTitle>
-              <DialogDescription className="max-sm:text-xs">
+              <DialogDescription className="max-sm:hidden">
                 Create up to 25 expenses at once. Perfect for processing
                 receipts from a business trip or monthly expense reports.
               </DialogDescription>
