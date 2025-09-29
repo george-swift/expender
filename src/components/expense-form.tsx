@@ -273,7 +273,7 @@ export function ExpenseForm({
             <SelectValue id="category" placeholder="Select a category" />
           </SelectTrigger>
           <SelectContent>
-            <ScrollArea className="h-80">
+            <ScrollArea className="h-60">
               {categories.map((category, index) => (
                 <SelectItem key={index} value={category}>
                   {category}
