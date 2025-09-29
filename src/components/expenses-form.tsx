@@ -1,4 +1,4 @@
-import { useMemo, useTransition } from 'react'
+import { useCallback, useMemo, useTransition } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   flexRender,
@@ -66,7 +66,6 @@ interface ExpensesFormProps {
 const MINIMUM_BATCH_SIZE = 5
 const MAXIMUM_BATCH_SIZE = 25
 
-// Mobile Card Component for individual expense entry
 function ExpenseCard({
   index,
   control,
@@ -86,6 +85,29 @@ function ExpenseCard({
   onRemove: () => void
   canRemove: boolean
 }) {
+  const handleCurrencyChange = useCallback(
+    (value: string) => {
+      setValue(`expenses.${index}.currency`, value, {
+        shouldDirty: true,
+        shouldValidate: true
+      })
+    },
+    [setValue, index]
+  )
+
+  const handleAmountChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setValue(`expenses.${index}.amount`, parseFloat(e.target.value) || 0, {
+        shouldDirty: true,
+        shouldValidate: true
+      })
+    },
+    [setValue, index]
+  )
+
+  const currency = watch(`expenses.${index}.currency`)
+  const amount = watch(`expenses.${index}.amount`)
+
   return (
     <Card className="w-full">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 px-4 border-b pb-2">
@@ -185,25 +207,11 @@ function ExpenseCard({
             step="any"
             min={0}
             placeholder="0.00"
-            currency={watch(`expenses.${index}.currency`, 'USD')}
-            onCurrencyChange={value => {
-              setValue(`expenses.${index}.currency`, value, {
-                shouldDirty: true,
-                shouldValidate: true
-              })
-            }}
+            currency={currency ?? 'USD'}
+            onCurrencyChange={handleCurrencyChange}
             {...register(`expenses.${index}.amount`, { valueAsNumber: true })}
-            onChange={e =>
-              setValue(
-                `expenses.${index}.amount`,
-                parseFloat(e.target.value) || 0,
-                {
-                  shouldDirty: true,
-                  shouldValidate: true
-                }
-              )
-            }
-            value={watch(`expenses.${index}.amount`) || ''}
+            onChange={handleAmountChange}
+            value={amount || ''}
             aria-invalid={!!errors?.expenses?.[index]?.amount}
           />
           {errors?.expenses?.[index]?.amount && (
@@ -301,14 +309,18 @@ export function ExpensesForm({ close }: ExpensesFormProps) {
     name: 'expenses'
   })
 
-  const columns = getExpensesTableFormColumns({
-    control,
-    errors,
-    register,
-    remove,
-    setValue,
-    watch
-  })
+  const columns = useMemo(
+    () =>
+      getExpensesTableFormColumns({
+        control,
+        errors,
+        register,
+        remove,
+        setValue,
+        watch
+      }),
+    [control, errors, register, remove, setValue, watch]
+  )
 
   const table = useReactTable({
     columns,
@@ -320,20 +332,30 @@ export function ExpensesForm({ close }: ExpensesFormProps) {
 
   const [pending, startTransition] = useTransition()
 
-  const onSubmit = ({ expenses }: Expenses) => {
-    startTransition(async () => {
-      const response = await createExpenses(expenses)
+  const onSubmit = useCallback(
+    ({ expenses }: Expenses) => {
+      startTransition(async () => {
+        const response = await createExpenses(expenses)
 
-      if (response?.error) {
-        toast.error(response.error)
-      } else {
-        toast.success(`Created ${expenses.length} expenses successfully!`)
-        close?.()
-      }
-    })
-  }
+        if (response?.error) {
+          toast.error(response.error)
+        } else {
+          toast.success(`Created ${expenses.length} expenses successfully!`)
+          close?.()
+        }
+      })
+    },
+    [close]
+  )
 
-  // Mobile Layout
+  const handleAddExpense = useCallback(() => {
+    append(defaultValues.expenses[0])
+  }, [append, defaultValues.expenses])
+
+  const handleReset = useCallback(() => {
+    reset(defaultValues)
+  }, [reset, defaultValues])
+
   if (isMobile) {
     return (
       <form
@@ -362,9 +384,7 @@ export function ExpensesForm({ close }: ExpensesFormProps) {
           <Button
             className="shadow-xs"
             disabled={pending || fields.length >= MAXIMUM_BATCH_SIZE}
-            onClick={() => {
-              append(defaultValues.expenses[0])
-            }}
+            onClick={handleAddExpense}
             type="button"
             variant="outline"
           >
@@ -376,9 +396,7 @@ export function ExpensesForm({ close }: ExpensesFormProps) {
             <Button
               className="shadow-xs flex-1"
               disabled={pending || !isDirty}
-              onClick={() => {
-                reset(defaultValues)
-              }}
+              onClick={handleReset}
               type="button"
               variant="outline"
             >
@@ -402,7 +420,6 @@ export function ExpensesForm({ close }: ExpensesFormProps) {
     )
   }
 
-  // Desktop Layout (existing table layout)
   return (
     <form
       className="h-full mt-2 pb-4 flex flex-col gap-4"
@@ -465,9 +482,7 @@ export function ExpensesForm({ close }: ExpensesFormProps) {
         <Button
           className="shadow-xs"
           disabled={pending || fields.length >= MAXIMUM_BATCH_SIZE}
-          onClick={() => {
-            append(defaultValues.expenses[0])
-          }}
+          onClick={handleAddExpense}
           type="button"
           variant="outline"
         >
@@ -476,9 +491,7 @@ export function ExpensesForm({ close }: ExpensesFormProps) {
         <Button
           className="shadow-xs"
           disabled={pending || !isDirty}
-          onClick={() => {
-            reset(defaultValues)
-          }}
+          onClick={handleReset}
           type="button"
           variant="outline"
         >
