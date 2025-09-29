@@ -2,7 +2,16 @@
 
 import { useMemo } from 'react'
 import dayjs from 'dayjs'
-import { InfoIcon, TrendingDownIcon, TrendingUpIcon } from 'lucide-react'
+import {
+  HashIcon,
+  InfoIcon,
+  LucideIcon,
+  SquareSplitHorizontalIcon,
+  TrendingDownIcon,
+  TrendingUpIcon,
+  TrophyIcon,
+  WalletIcon
+} from 'lucide-react'
 import {
   Area,
   AreaChart,
@@ -29,8 +38,7 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent,
-  CustomTooltipProps
+  ChartTooltipContent
 } from '@/components/ui/chart'
 import {
   Tooltip,
@@ -61,6 +69,7 @@ export function DashboardCharts({ expenses }: { expenses: Expense[] }) {
 
   const trends = [
     {
+      icon: WalletIcon,
       label: 'Total Expenses',
       value: data.currentTotal,
       percentage: data.totalExpensesChange,
@@ -68,6 +77,7 @@ export function DashboardCharts({ expenses }: { expenses: Expense[] }) {
       formatValue: true
     },
     {
+      icon: SquareSplitHorizontalIcon,
       label: 'Average Expense',
       value: data.currentAverage,
       percentage: data.averageChange,
@@ -75,11 +85,13 @@ export function DashboardCharts({ expenses }: { expenses: Expense[] }) {
       formatValue: true
     },
     {
-      label: '# of Expenses',
+      icon: HashIcon,
+      label: 'No. of Expenses',
       value: data.currentCount,
       percentage: data.countChange
     },
     {
+      icon: TrophyIcon,
       label: 'Top Category',
       value: data.currentTopCategoryTotal,
       percentage: data.topCategoryChange,
@@ -99,7 +111,7 @@ export function DashboardCharts({ expenses }: { expenses: Expense[] }) {
       </div>
 
       <div className="px-4 pb-10 space-y-4 lg:px-6">
-        <Card className="@container/card shadow-xs">
+        <Card className="@container/card shadow-none">
           <CardHeader>
             <CardTitle>Expense Trends</CardTitle>
             <CardDescription>
@@ -138,7 +150,7 @@ export function DashboardCharts({ expenses }: { expenses: Expense[] }) {
                     tickMargin={8}
                   />
                   <ChartTooltip
-                    content={(props: CustomTooltipProps) => (
+                    content={props => (
                       <ChartTooltipContent
                         {...props}
                         indicator="line"
@@ -171,7 +183,7 @@ export function DashboardCharts({ expenses }: { expenses: Expense[] }) {
           </CardContent>
         </Card>
 
-        <Card className="@container/card shadow-xs">
+        <Card className="@container/card shadow-none">
           <CardHeader className="relative">
             <CardTitle>Top Spending Categories</CardTitle>
             <CardDescription>
@@ -214,7 +226,7 @@ export function DashboardCharts({ expenses }: { expenses: Expense[] }) {
                     type="category"
                   />
                   <ChartTooltip
-                    content={(props: CustomTooltipProps) => (
+                    content={props => (
                       <ChartTooltipContent
                         {...props}
                         indicator="line"
@@ -255,6 +267,7 @@ export function DashboardCharts({ expenses }: { expenses: Expense[] }) {
 interface DashboardTrendProps {
   currency?: string
   formatValue?: boolean
+  icon: LucideIcon
   label: string
   percentage: string
   tooltip?: string
@@ -264,6 +277,7 @@ interface DashboardTrendProps {
 export function DashboardTrend({
   currency,
   formatValue,
+  icon: Icon,
   label,
   percentage,
   tooltip,
@@ -277,9 +291,19 @@ export function DashboardTrend({
     : value
 
   return (
-    <Card className="@container/card shadow-xs">
-      <CardHeader className="relative">
-        <CardDescription className="flex items-center gap-2">
+    <Card className="@container/card shadow-none py-4">
+      <CardHeader className="relative px-4 gap-2">
+        <CardTitle
+          className={cn('@[250px]/card:text-3xl text-2xl font-medium order-1', {
+            '@[250px]/card:text-2xl': String(formattedValue).length > 15
+          })}
+        >
+          {formattedValue}
+        </CardTitle>
+        <CardDescription className="flex items-center gap-2 order-0">
+          <span className="size-5 flex items-center justify-center rounded-md border">
+            <Icon className="size-3" />
+          </span>
           <span>{label}</span>
           {tooltip && (
             <Tooltip>
@@ -290,22 +314,12 @@ export function DashboardTrend({
             </Tooltip>
           )}
         </CardDescription>
-        <CardTitle
-          className={cn('@[250px]/card:text-3xl text-2xl font-semibold', {
-            '@[250px]/card:text-2xl': String(formattedValue).length > 15
-          })}
-        >
-          {formattedValue}
-        </CardTitle>
-        <div className="absolute right-4 top-0.5">
+        <div className="absolute right-4 top-0">
           <Badge
-            className={cn(
-              'flex gap-1 rounded-lg text-xs font-semibold text-foreground',
-              {
-                'text-destructive-foreground': isNegative,
-                'text-green-600': isPositive
-              }
-            )}
+            className={cn('flex gap-1 rounded-xl text-xs text-foreground', {
+              'text-destructive-foreground': isNegative,
+              'text-green-600': isPositive
+            })}
             variant="outline"
           >
             {isPositive && <TrendingUpIcon className="size-3" />}

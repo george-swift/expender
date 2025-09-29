@@ -28,6 +28,7 @@ interface NavItem {
   items?: NavItem[]
   title: string
   url: string
+  onClick?: () => void
 }
 
 export function NavSite({
@@ -42,9 +43,6 @@ export function NavSite({
 
   const isActive = (itemHref: string) =>
     pathname === itemHref || pathname.startsWith(itemHref)
-
-  const isPublicRoute = (itemHref: string) =>
-    ['/', '/policies'].includes(itemHref)
 
   return (
     <SidebarGroup className={className}>
@@ -62,9 +60,9 @@ export function NavSite({
                   <Link
                     aria-disabled={item.disabled}
                     href={item.url}
-                    target={isPublicRoute(item.url) ? '_blank' : '_self'}
+                    onClick={item.onClick}
                   >
-                    {item.icon && <item.icon />}
+                    {item.icon && <item.icon className="stroke-[1.5]" />}
                     {item.emoji && <span>{item.emoji}</span>}
                     <span>{item.title}</span>
                   </Link>
@@ -82,8 +80,8 @@ export function NavSite({
             >
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link href={item.url}>
-                    {item.icon && <item.icon />}
+                  <Link href={item.url} onClick={item.onClick}>
+                    {item.icon && <item.icon className="stroke-[1.5]" />}
                     {item.emoji && <span>{item.emoji}</span>}
                     <span>{item.title}</span>
                   </Link>
@@ -104,11 +102,11 @@ export function NavSite({
                           <Link
                             aria-disabled={subItem.disabled}
                             href={subItem.url}
-                            target={
-                              isPublicRoute(item.url) ? '_blank' : '_self'
-                            }
+                            onClick={item.onClick}
                           >
-                            {subItem.icon && <subItem.icon />}
+                            {subItem.icon && (
+                              <subItem.icon className="stroke-[1.5]" />
+                            )}
                             {subItem.emoji && <span>{subItem.emoji}</span>}
                             <span>{subItem.title}</span>
                           </Link>

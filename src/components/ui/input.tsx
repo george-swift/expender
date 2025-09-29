@@ -81,7 +81,7 @@ export function CurrencyInput({
           <SelectValue placeholder="USD" />
         </SelectTrigger>
         <SelectContent className="min-w-[80px]">
-          <ScrollArea className="h-80">
+          <ScrollArea className="h-60">
             {currencies.map(currencyCode => (
               <SelectItem key={currencyCode} value={currencyCode}>
                 {currencyCode}

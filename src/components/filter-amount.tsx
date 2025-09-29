@@ -170,7 +170,7 @@ export function FilterAmount({ expenses }: { expenses: Expense[] }) {
     <Popover>
       <PopoverTrigger asChild id="amount-filter">
         <Button
-          className="w-full shadow-xs justify-start lg:justify-center lg:w-fit"
+          className="w-full shadow-none font-normal justify-start rounded-lg lg:justify-center lg:w-fit"
           variant="outline"
         >
           {formatCurrencyAmount(localMin)} - {formatCurrencyAmount(localMax)}
@@ -206,7 +206,7 @@ export function FilterAmount({ expenses }: { expenses: Expense[] }) {
         />
 
         <div className="mt-4 space-y-2">
-          <p className="text-base sm:text-sm font-medium">Popular ranges:</p>
+          <p className="text-base sm:text-sm">Popular ranges:</p>
           {presetOptions.length === 0 && (
             <span className="text-xs text-muted-foreground">
               No presets available for your data.
@@ -214,7 +214,7 @@ export function FilterAmount({ expenses }: { expenses: Expense[] }) {
           )}
           {presetOptions.map(option => (
             <Button
-              className="w-full justify-start shadow-xs"
+              className="w-full justify-start shadow-none font-normal"
               key={option.label}
               onClick={() => handlePresetClick(option.min, option.max)}
               variant="outline"
@@ -224,7 +224,7 @@ export function FilterAmount({ expenses }: { expenses: Expense[] }) {
           ))}
         </div>
         <div className="mt-4 space-y-2">
-          <p className="text-base sm:text-sm font-medium">Custom range:</p>
+          <p className="text-base sm:text-sm">Custom range:</p>
           <div className="flex w-full items-center gap-2">
             <Input
               name="Minimum Amount"
@@ -236,7 +236,7 @@ export function FilterAmount({ expenses }: { expenses: Expense[] }) {
               max={localMax - 1}
               value={localMin}
             />
-            <span className="text-xs font-medium text-muted-foreground">–</span>
+            <span className="text-xs text-muted-foreground">–</span>
             <Input
               name="Maximum Amount"
               onChange={handleMaxInputChange}

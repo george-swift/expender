@@ -7,9 +7,9 @@ import { UserResource } from '@clerk/types'
 import {
   ChevronsUpDownIcon,
   LogOutIcon,
-  MonitorCogIcon,
   MonitorIcon,
   MoonIcon,
+  PaletteIcon,
   SunIcon,
   UserCogIcon
 } from 'lucide-react'
@@ -109,7 +109,7 @@ export function NavUser({ user }: { user: UserResource | null | undefined }) {
             <DropdownMenuGroup>
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger>
-                  <MonitorCogIcon className="size-4 mr-2 text-muted-foreground" />
+                  <PaletteIcon className="size-4 mr-2 text-muted-foreground" />
                   Theme
                 </DropdownMenuSubTrigger>
                 <DropdownMenuSubContent>

@@ -30,7 +30,10 @@ export function FilterDate() {
 
   return (
     <Select onValueChange={value => setRange(value as RangeKey)} value={range}>
-      <SelectTrigger className="w-full lg:w-36" aria-label="Date range">
+      <SelectTrigger
+        className="w-full rounded-lg shadow-none lg:w-36"
+        aria-label="Date range"
+      >
         <SelectValue placeholder="Select date" />
       </SelectTrigger>
       <SelectContent align="end">

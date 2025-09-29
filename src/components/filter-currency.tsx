@@ -18,11 +18,14 @@ export function FilterCurrency() {
 
   return (
     <Select onValueChange={setCurrency} value={currency}>
-      <SelectTrigger className="w-full lg:w-24" id="currency-select">
+      <SelectTrigger
+        className="w-full rounded-lg shadow-none lg:w-24"
+        id="currency-select"
+      >
         <SelectValue placeholder="Select date" />
       </SelectTrigger>
       <SelectContent className="min-w-24">
-        <ScrollArea className="h-80">
+        <ScrollArea className="h-60">
           {Object.keys(currencyPatterns).map(currencyCode => (
             <SelectItem key={currencyCode} value={currencyCode}>
               {currencyCode}

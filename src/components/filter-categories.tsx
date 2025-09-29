@@ -70,7 +70,7 @@ export function FilterCategories() {
       <PopoverTrigger asChild className="w-full lg:w-56">
         <Button
           aria-expanded={open}
-          className={cn('justify-between shadow-xs', {
+          className={cn('rounded-lg justify-between shadow-none font-normal', {
             'text-muted-foreground': selectedCategories.length === 0
           })}
           role="combobox"

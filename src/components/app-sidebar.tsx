@@ -1,12 +1,20 @@
 'use client'
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useUser } from '@clerk/nextjs'
 import {
-  CogIcon,
+  ArrowLeftRightIcon,
+  BotIcon,
+  FileScanIcon,
   FileSpreadsheetIcon,
-  LayoutDashboardIcon,
+  HeadsetIcon,
+  HomeIcon,
+  NewspaperIcon,
   ReceiptTextIcon,
+  RefreshCwIcon,
+  RocketIcon,
+  SettingsIcon,
   SparklesIcon
 } from 'lucide-react'
 
@@ -31,6 +39,7 @@ import {
   DialogTitle
 } from '@/components/ui/dialog'
 import { Progress } from '@/components/ui/progress'
+import { Separator } from '@/components/ui/separator'
 import {
   Sidebar,
   SidebarContent,
@@ -39,139 +48,94 @@ import {
   SidebarMenuButton
 } from '@/components/ui/sidebar'
 
-const navigation = {
-  main: [
-    {
-      icon: LayoutDashboardIcon,
-      title: 'Dashboard',
-      url: '/dashboard'
-    },
-    {
-      icon: FileSpreadsheetIcon,
-      title: 'Expenses',
-      url: '/expenses'
-    },
-    {
-      icon: SparklesIcon,
-      items: [
-        {
-          disabled: true,
-          emoji: '🧾',
-          title: 'Smart Scan',
-          url: '/ai/smart-scan'
-        },
-        {
-          disabled: true,
-          emoji: '🤖',
-          title: 'Copilot',
-          url: '/ai/copilot'
-        }
-      ],
-      title: 'AI Suite',
-      url: '#'
-    },
-    {
-      icon: CogIcon,
-      title: 'Settings',
-      url: '/settings'
-    }
-  ],
-  resources: [
-    {
-      disabled: true,
-      emoji: '📝',
-      title: 'Blog',
-      url: '/blog'
-    },
-    {
-      disabled: true,
-      emoji: '💡',
-      items: [
-        {
-          disabled: true,
-          emoji: '📋',
-          title: 'Getting Started',
-          url: '/help/getting-started'
-        },
-        {
-          disabled: true,
-          emoji: '🧾',
-          title: 'Smart Scan Guide',
-          url: '/help/smart-scan'
-        },
-        {
-          disabled: true,
-          emoji: '📊',
-          title: 'Exporting Data',
-          url: '/help/exports'
-        },
-        {
-          disabled: true,
-          emoji: '🛠️',
-          title: 'Troubleshooting',
-          url: '/help/troubleshooting'
-        },
-        {
-          disabled: true,
-          emoji: '⌨️',
-          title: 'Keyboard Shortcuts',
-          url: '/help/shortcuts'
-        }
-      ],
-      title: 'Help Center',
-      url: '#'
-    },
-    {
-      disabled: true,
-      emoji: '🚀',
-      title: 'Release Notes',
-      url: '/release-notes'
-    },
-    {
-      disabled: true,
-      emoji: '🖇️',
-      title: 'Terms & Policies',
-      url: '#'
-    }
-  ]
-}
-
 export function AppSidebar({
   quota,
   ...props
 }: { quota: Quota } & React.ComponentProps<typeof Sidebar>) {
+  const router = useRouter()
+
   const { user } = useUser()
 
   const quotaLimit = quota?.limit ?? FREE_PLAN_SMART_SCAN_LIMIT
 
   const waitlistDialog = useDialog()
 
+  const navigation = {
+    main: [
+      {
+        icon: HomeIcon,
+        title: 'Dashboard',
+        url: '/dashboard'
+      },
+      {
+        icon: ArrowLeftRightIcon,
+        title: 'Expenses',
+        url: '/expenses'
+      },
+      {
+        icon: SparklesIcon,
+        items: [
+          {
+            disabled: true,
+            icon: FileScanIcon,
+            title: 'Smart Scan',
+            url: '/ai/smart-scan'
+          },
+          {
+            disabled: true,
+            icon: BotIcon,
+            title: 'Copilot',
+            url: '/ai/copilot'
+          }
+        ],
+        title: 'AI Suite',
+        url: '#'
+      },
+      {
+        icon: SettingsIcon,
+        title: 'Settings',
+        url: '/settings'
+      }
+    ],
+    secondary: [
+      {
+        icon: RefreshCwIcon,
+        title: 'Refresh',
+        url: '#',
+        onClick: () => router.refresh()
+      },
+      {
+        icon: NewspaperIcon,
+        title: 'Blog',
+        url: '/blog'
+      },
+      {
+        icon: HeadsetIcon,
+        title: 'Help Center',
+        url: '/support'
+      }
+    ]
+  }
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <SidebarMenuButton
           asChild
-          className="group-data-[collapsible=icon]:pl-0! data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-          size="lg"
+          className="justify-center !size-8 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
         >
-          <Link href="/">
-            <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-              <ReceiptTextIcon className="size-4" />
-            </div>
-            <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-semibold">Expender</span>
-              {!!quota?.plan && (
-                <span className="truncate text-xs capitalize">
-                  {quota.plan}
-                </span>
-              )}
-            </div>
+          <Link
+            href="/"
+            className="aspect-square flex items-center justify-center"
+          >
+            <ReceiptTextIcon className="size-6 stroke-2" />
           </Link>
         </SidebarMenuButton>
       </SidebarHeader>
       <SidebarContent>
         <NavSite items={navigation.main} />
-        <NavSite items={navigation.resources} label="Resources" />
+        <Separator className="mx-auto !w-[calc(100%-theme(space.4))]" />
+        <NavSite items={navigation.secondary} />
       </SidebarContent>
       <SidebarFooter>
         <Card className="gap-2 py-4 shadow-none group-data-[state=collapsed]:hidden">
@@ -211,24 +175,24 @@ export function AppSidebar({
                 What to expect:
               </h4>
               <ul className="space-y-1 text-sm text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <div className="size-4">🧾</div>
+                <li className="flex items-center gap-2">
+                  <FileScanIcon className="size-4 stroke-[1.5]" />
                   Unlimited Smart Scans per month
                 </li>
-                <li className="flex items-start gap-2">
-                  <div className="size-4">🤖</div>
+                <li className="flex items-center gap-2">
+                  <BotIcon className="size-4 stroke-[1.5]" />
                   AI Copilot to interact with for personalized insights
                 </li>
-                <li className="flex items-start gap-2">
-                  <div className="size-4">📊</div>
+                <li className="flex items-center gap-2">
+                  <FileSpreadsheetIcon className="size-4 stroke-[1.5]" />
                   Advanced expense analytics & insights
                 </li>
-                <li className="flex items-start gap-2">
-                  <div className="size-4">📞</div>
+                <li className="flex items-center gap-2">
+                  <HeadsetIcon className="size-4 stroke-[1.5]" />
                   Priority customer support
                 </li>
-                <li className="flex items-start gap-2">
-                  <div className="size-4">🚀</div>
+                <li className="flex items-center gap-2">
+                  <RocketIcon className="size-4 stroke-[1.5]" />
                   Early access to new features
                 </li>
               </ul>
@@ -244,13 +208,7 @@ export function AppSidebar({
                 >
                   Maybe Later
                 </Button>
-                <Button
-                  className="flex-1"
-                  onClick={() => {
-                    // TODO: Add to waitlist/notification system
-                    waitlistDialog.dismiss()
-                  }}
-                >
+                <Button className="flex-1" disabled>
                   Notify Me
                 </Button>
               </div>
