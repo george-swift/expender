@@ -19,6 +19,11 @@ const haffer = localFont({
       weight: '400'
     },
     {
+      path: '../fonts/Haffer-Medium.woff2',
+      style: 'normal',
+      weight: '500'
+    },
+    {
       path: '../fonts/Haffer-Bold.woff',
       style: 'normal',
       weight: '700'
@@ -75,23 +80,13 @@ export const metadata: Metadata = {
     siteName: 'Expender',
     title: 'Expender - Smart Expense Management',
     description:
-      'A modern expense tracker with AI-powered receipt scanning, intelligent categorization, and comprehensive expense management features. Track expenses effortlessly with SmartScan technology.',
-    images: [
-      {
-        url: '/og.png',
-        width: 1200,
-        height: 630,
-        alt: 'Expender - Smart Expense Management Dashboard',
-        type: 'image/png'
-      }
-    ]
+      'A modern expense tracker with AI-powered receipt scanning, intelligent categorization, and comprehensive expense management features. Track expenses effortlessly with SmartScan technology.'
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Expender - Smart Expense Management',
     description:
-      'Track expenses effortlessly with AI-powered receipt scanning and intelligent categorization.',
-    images: ['/og.png']
+      'Track expenses effortlessly with AI-powered receipt scanning and intelligent categorization.'
   },
   icons: {
     icon: [
@@ -131,7 +126,7 @@ export default function RootLayout({
       className={cn('antialiased', haffer.variable, geistMono.variable)}
       suppressHydrationWarning
     >
-      <body className="h-full font-sans select-none bg-gray-50 dark:bg-zinc-950">
+      <body className="h-full font-sans bg-grey-4">
         <Providers>
           {children}
           <Toaster richColors />
