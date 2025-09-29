@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 import { ListFilterPlusIcon, ListRestartIcon } from 'lucide-react'
 import { useQueryState } from 'nuqs'
@@ -35,7 +35,13 @@ export function DashboardFilters({ expenses }: { expenses: Expense[] }) {
     setAmountRange(null)
   }
 
-  const lastRefresh = useMemo(() => dayjs().format('DD/MM/YYYY HH:mm'), [])
+  const [lastRefresh, setLastRefresh] = useState(() =>
+    dayjs().format('DD/MM/YYYY HH:mm')
+  )
+
+  useEffect(() => {
+    setLastRefresh(dayjs().format('DD/MM/YYYY HH:mm'))
+  }, [expenses])
 
   return (
     <div
