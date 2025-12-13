@@ -17,25 +17,24 @@ export const marketingNav = [
 
 export const footerItems = {
   product: [
-    { name: 'Why Expender', href: '/#why' },
+    { name: 'Why Expender', href: '/about' },
     { name: 'Pricing', href: '/pricing' },
     { name: "What's new", href: '/changelog' }
   ],
-  support: [
-    { name: 'Submit ticket', href: '/support' },
-    { name: 'Guides', href: '/guides' }
+  solutions: [
+    { name: 'By product', href: '/#product' },
+    { name: 'For individuals', href: '/individuals' },
+    { name: 'For businesses', href: '/business' }
   ],
   resources: [
-    { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' }
+    { name: 'Blog', href: '/blog' },
+    { name: 'Customer center', href: '/contact' },
+    { name: 'Guides', href: '/guides' }
   ],
   legal: [
-    { name: 'Terms of service', href: '/terms' },
-    { name: 'Privacy policy', href: '/privacy' },
-    {
-      name: 'License',
-      href: 'https://github.com/george-swift/expender/blob/master/LICENSE.md'
-    }
+    { name: 'About', href: '/about' },
+    { name: 'Terms', href: '/terms' },
+    { name: 'Privacy', href: '/privacy' }
   ],
   social: [
     {
