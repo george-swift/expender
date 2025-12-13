@@ -7,12 +7,12 @@
   --background: oklch(1 0 0);
   --background-light: oklch(1 0 0);
   --foreground: oklch(0.3 0 0);
-  --foreground-light: oklch(0.3 0 0);
+  --foreground-light: oklch(0.2951 0.0029 197);
   --brand: oklch(0.94 0.09 129.87);
   --grey-1: oklch(0.51 0 0);
   --grey-2: oklch(0.64 0 0);
   --grey-3: oklch(0.92 0 0);
-  --grey-3-light: oklch(0.93 0 0);
+  --grey-3-light: oklch(0.9251 0.0029 84.56);
   --grey-4: oklch(0.96 0 0);
   --grey-5: oklch(0.98 0 0);
   --card: oklch(1 0 0);
