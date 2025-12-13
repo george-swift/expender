@@ -16,8 +16,7 @@ import {
   SettingsIcon,
   SparklesIcon,
   SquareSplitHorizontalIcon,
-  Trash2Icon,
-  TrendingUpIcon,
+  TrashIcon,
   WalletIcon
 } from 'lucide-react'
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
@@ -35,7 +34,7 @@ import { Separator } from '@/components/ui/separator'
 
 export function PrimaryFeatures() {
   return (
-    <section className="flex flex-col items-center justify-center gap-8 text-center text-foreground-light pt-20 max-w-7xl mx-auto px-4 lg:px-6 lg:pt-40">
+    <section className="flex flex-col items-center justify-center gap-8 text-center text-foreground-light pt-20 max-w-7xl mx-auto max-lg:px-4 lg:pt-40">
       <div className="flex items-center *:rounded-[10px]">
         <div className="size-7 bg-brand flex items-center justify-center">
           <ReceiptTextIcon className="size-4 stroke-2 text-foreground-light" />
@@ -77,7 +76,7 @@ export function PrimaryFeatures() {
                 height={150}
                 className="size-16 grayscale"
               />
-              <div className="w-3/4 text-balance text-center font-medium text-base/[22px] text-grey-1">
+              <div className="w-3/4 text-balance text-center text-base/[22px] text-grey-1">
                 Real-time data extraction in 3-5 seconds
               </div>
             </div>
@@ -145,17 +144,17 @@ export function PrimaryFeatures() {
                   </div>
                 </div>
                 <div className="w-full flex items-center shrink-0 text-xs text-muted-foreground space-x-1.5">
-                  <span>Added on May 4, 2025</span>
+                  <span>Added May 04, 2025</span>
                   <Separator
                     className="max-sm:hidden data-[orientation=vertical]:h-3"
                     orientation="vertical"
                   />
-                  <span>Last used 3 days ago</span>
+                  <span>Last used 3d ago</span>
                 </div>
               </div>
               <div className="h-11 flex items-start shrink-0 space-x-2.5">
-                <PencilIcon className="size-3.5" />
-                <Trash2Icon className="size-3.5" />
+                <PencilIcon className="size-4" />
+                <TrashIcon className="size-4" />
               </div>
             </div>
 
@@ -176,17 +175,17 @@ export function PrimaryFeatures() {
                   </div>
                 </div>
                 <div className="w-full flex items-center shrink-0 text-xs text-muted-foreground space-x-1.5">
-                  <span>Added on May 2, 2025</span>
+                  <span>Added May 02, 2025</span>
                   <Separator
                     className="max-sm:hidden data-[orientation=vertical]:h-3"
                     orientation="vertical"
                   />
-                  <span>Last used 7 days ago</span>
+                  <span>Last used 7d ago</span>
                 </div>
               </div>
               <div className="h-11 flex items-start shrink-0 space-x-2.5">
-                <PencilIcon className="size-3.5" />
-                <Trash2Icon className="size-3.5" />
+                <PencilIcon className="size-4" />
+                <TrashIcon className="size-4" />
               </div>
             </div>
           </div>
@@ -275,7 +274,6 @@ export function PrimaryFeatures() {
                         variant="outline"
                         className="rounded-xl text-xs text-green-600"
                       >
-                        <TrendingUpIcon className="size-3" />
                         5%
                       </Badge>
                     </div>

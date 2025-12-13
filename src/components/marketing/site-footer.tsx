@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ReceiptTextIcon } from 'lucide-react'
+import { ReceiptTextIcon, SparklesIcon } from 'lucide-react'
 
 import { footerItems } from '@/lib/site-metadata'
 
@@ -15,10 +15,18 @@ export function SiteFooter() {
             <div className="flex md:justify-end">
               <Link
                 href="/sign-up"
-                className="flex h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-foreground-light px-3.5 text-[15px]/[21px] font-medium text-background-light"
+                className="group flex h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-foreground-light px-3.5 text-[15px]/[21px] font-medium text-background-light"
               >
-                <ReceiptTextIcon className="size-4" />
-                Try Expender today
+                <div className="min-w-40 h-6 relative overflow-hidden">
+                  <span className="flex gap-2.5 items-center absolute inset-0 justify-center ease-out transition-transform duration-150 group-hover:-translate-y-full">
+                    <SparklesIcon className="size-4" />
+                    Try Expender today
+                  </span>
+                  <span className="flex gap-2.5 items-center absolute inset-0 justify-center translate-y-full ease-out transition-transform duration-150 group-hover:translate-y-0">
+                    <SparklesIcon className="size-4" />
+                    Try Expender today
+                  </span>
+                </div>
               </Link>
             </div>
           </div>
@@ -27,18 +35,18 @@ export function SiteFooter() {
             <div className="md:grid md:grid-cols-2 md:gap-8 xl:gap-10">
               <FooterColumn title="Product" items={footerItems.product} />
               <FooterColumn
-                title="Support"
-                items={footerItems.support}
+                title="Solutions"
+                items={footerItems.solutions}
                 className="mt-10 md:mt-0"
               />
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8 xl:gap-10">
-              <FooterColumn title="Resources" items={footerItems.resources} />
               <FooterColumn
-                title="Legal"
+                title="Company"
                 items={footerItems.legal}
                 className="mt-10 md:mt-0"
               />
+              <FooterColumn title="Resources" items={footerItems.resources} />
             </div>
           </div>
 
@@ -57,7 +65,7 @@ export function SiteFooter() {
                   className="text-grey-1 transition hover:text-foreground-light"
                 >
                   <span className="sr-only">{item.name}</span>
-                  <item.icon aria-hidden="true" className="size-6" />
+                  <item.icon aria-hidden="true" className="size-5" />
                 </a>
               ))}
             </div>

@@ -6,7 +6,10 @@ import { secondaryFeatures } from '@/lib/site-metadata'
 
 export function SecondaryFeatures() {
   return (
-    <section className="flex flex-col gap-8 pt-20 max-w-7xl mx-auto px-4 lg:px-6 lg:pt-40">
+    <section
+      id="product"
+      className="flex flex-col gap-8 pt-20 max-w-7xl mx-auto max-lg:px-4 lg:pt-40"
+    >
       <div className="flex items-center *:rounded-[10px]">
         <div className="size-7 bg-brand flex items-center justify-center">
           <ReceiptTextIcon className="size-4 stroke-2 text-foreground-light" />
@@ -45,7 +48,7 @@ export function SecondaryFeatures() {
             src={BudgetingImg}
             alt="Budgeting on iPad using GoodNotes"
             placeholder="blur"
-            className="rounded-[inherit] object-cover size-[inherit]"
+            className="rounded-[inherit] object-cover object-left size-[inherit]"
           />
         </div>
       </div>

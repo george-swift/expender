@@ -17,14 +17,14 @@ import { Button, buttonVariants } from '@/components/ui/button'
 
 export function Hero() {
   return (
-    <section className="max-w-7xl mx-auto px-4 lg:px-6">
+    <section className="max-w-7xl mx-auto max-lg:px-4">
       <div className="grid gap-8 pb-20 md:grid-cols-[2fr_1fr] lg:pb-30">
         <div className="grid gap-6">
           <Link
             href="#"
             className="group w-fit bg-background-light flex items-center text-sm/5.25 font-medium rounded-[50px] gap-2 py-1 pl-4 pr-2.5"
           >
-            <span>Announcing the Beta Release</span>
+            <span>🎉 Expender is in beta. See release notes</span>
             <ChevronRightIcon className="size-3.5 stroke-2 transition-transform ease-in-out group-hover:translate-x-1" />
           </Link>
 
@@ -52,7 +52,7 @@ export function Hero() {
               ))}
             </div>
             <div className="flex items-center gap-x-1.5">
-              <span>4.9 rating</span>
+              <span>4.8 rating</span>
               <ChevronRightIcon className="size-3.5 stroke-2 transition-transform ease-in-out group-hover:translate-x-1" />
             </div>
           </a>
@@ -61,12 +61,20 @@ export function Hero() {
           <Link
             href="/sign-in"
             className={cn(
-              buttonVariants({ size: 'lg', className: 'h-12' }),
-              'bg-foreground-light hover:bg-foreground-light/90 text-background-light rounded-lg'
+              buttonVariants({ size: 'lg', className: 'group h-12' }),
+              'bg-foreground-light hover:bg-foreground-light/90 rounded-lg text-background-light'
             )}
           >
-            Sign In
-            <ArrowRightIcon className="size-4" />
+            <div className="min-w-20 h-6 relative overflow-hidden">
+              <span className="flex gap-2.5 items-center absolute inset-0 justify-center ease-out transition-transform duration-150 group-hover:-translate-y-full">
+                Sign In
+                <ArrowRightIcon className="size-4" />
+              </span>
+              <span className="flex gap-2.5 items-center absolute inset-0 justify-center translate-y-full ease-out transition-transform duration-150 group-hover:translate-y-0">
+                Sign In
+                <ArrowRightIcon className="size-4" />
+              </span>
+            </div>
           </Link>
 
           <Button
@@ -76,7 +84,7 @@ export function Hero() {
             onClick={() =>
               toast('Video coming soon!', {
                 description:
-                  "We're working on it and will have it ready shortly."
+                  "We're working on it and will have it published shortly."
               })
             }
           >

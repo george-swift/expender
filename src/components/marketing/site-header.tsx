@@ -20,7 +20,7 @@ export function SiteHeader() {
   const Icon = open ? XIcon : MenuIcon
 
   return (
-    <header className="fixed left-1/2 top-6 z-40 -translate-x-1/2 flex min-h-[52px] items-center gap-3 rounded-xl bg-foreground-light pl-2 py-1.5 text-background-light backdrop-blur supports-[backdrop-filter]:bg-foreground-light/95 max-lg:w-70">
+    <header className="fixed left-1/2 top-6 z-40 -translate-x-1/2 flex min-h-[52px] items-center gap-3 rounded-xl bg-foreground-light pl-2 py-1.5 text-background-light backdrop-blur max-lg:w-70">
       <Link
         href="/"
         className="flex size-9 items-center justify-center rounded-lg bg-brand text-foreground-light"
@@ -37,7 +37,7 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex h-10 items-center justify-center rounded-lg px-3 text-[15px]/[21px] font-medium transition',
+                'flex h-10 items-center justify-center rounded-lg px-3 text-[15px]/[21px] font-medium transition ease-out',
                 active ? 'bg-background/20' : 'hover:bg-background/10'
               )}
             >
@@ -50,9 +50,16 @@ export function SiteHeader() {
       <div className="ml-auto flex items-center gap-2 lg:pr-1.5">
         <Link
           href="/sign-up"
-          className="flex h-10 shrink-0 items-center justify-center rounded-lg bg-background-light px-3.5 text-[15px]/[21px] font-medium text-foreground-light"
+          className="h-10 shrink-0 group flex items-center justify-center rounded-lg bg-background-light px-3.5 text-[15px]/[21px] font-medium text-foreground-light"
         >
-          Start for free
+          <div className="min-w-22 h-6 relative overflow-hidden">
+            <span className="flex gap-2.5 items-center absolute inset-0 justify-center ease-out transition-transform duration-150 group-hover:-translate-y-full">
+              Start for free
+            </span>
+            <span className="flex gap-2.5 items-center absolute inset-0 justify-center translate-y-full ease-out transition-transform duration-150 group-hover:translate-y-0">
+              Start for free
+            </span>
+          </div>
         </Link>
 
         <Popover open={open} onOpenChange={setOpen}>

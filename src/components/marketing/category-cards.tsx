@@ -79,7 +79,7 @@ function CategoryCard({ card }: { card: CategoryCard }) {
 
 export function CategoryCards() {
   return (
-    <section className="flex flex-col items-center justify-center gap-14 px-4 max-w-7xl mx-auto lg:px-6 pt-20 lg:pt-40 xl:gap-16">
+    <section className="flex flex-col items-center justify-center gap-14 max-w-7xl mx-auto max-lg:px-4 pt-20 lg:pt-40 xl:gap-16">
       <h2 className="text-4xl text-center text-balance font-medium lg:text-[40px]/[42px] lg:w-1/2">
         Everything you need, nothing you don&apos;t
       </h2>
